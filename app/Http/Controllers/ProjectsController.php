@@ -136,7 +136,7 @@ class ProjectsController extends Controller
             $exists = Project::where('name', $name)->exists();
             if (!$exists) {
                 // Set a default language eif one isn't provided
-                if (!$repo->language) {
+                if (!$repo->language || $repo->language == 'JavaScript') {
                     $repo->language = 'JS';
                 }
 
