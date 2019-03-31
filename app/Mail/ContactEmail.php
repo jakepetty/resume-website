@@ -30,6 +30,6 @@ class ContactEmail extends Mailable
      */
     public function build()
     {
-        return $this->replyTo($this->payload["email"], $this->payload["name"])->from($this->payload["email"], $this->payload["name"])->markdown('emails.contact')->with($this->payload);
+        return $this->replyTo($this->payload["email"], $this->payload["name"])->from(config('mail.from.address'), $this->payload['name'])->markdown('emails.contact')->with($this->payload);
     }
 }
