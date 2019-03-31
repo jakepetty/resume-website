@@ -1,0 +1,19 @@
+.btn {
+  &.btn-outline-dark {
+    border: 2px solid $dark-blue;
+    color: $dark-blue;
+    &:hover {
+      background-color: $dark-blue;
+      color: #fff;
+    }
+    &:active {
+      background-color: lighten($dark-blue, 20) !important;
+    }
+    &:focus {
+      box-shadow: none !important;
+    }
+    &.view-more {
+      margin-top: 35px;
+    }
+  }
+}
