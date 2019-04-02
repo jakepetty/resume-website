@@ -19,4 +19,5 @@ $('.skill').each(function (i) {
 window.onload = function () {
     $('body').removeClass('no-scroll');
     $('.loading').fadeOut();
+    $('*[data-toggle="popover"]').popover()
 }
