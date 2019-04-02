@@ -2,9 +2,8 @@
 
 return [
     'github' => [
-        'url' => env('GITHUB_URL', ''),
-        'repo' => env('GITHUB_REPO_URL', ''),
-        'api' => env('GITHUB_API_URL', '')
+        'username' => env('GITHUB_USERNAME', ''),
+        'password' => env('GITHUB_PASSWORD', '')
     ],
     /*
     |--------------------------------------------------------------------------

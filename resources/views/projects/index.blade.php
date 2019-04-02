@@ -1,29 +1,40 @@
 @extends('layouts.backend')
 @section('content')
-<div class="container">
-    <table class="table">
-        <thead>
+<section class="container">
+    <h2>Project Management</h2>
+    <table class="table table-borderless table-hover">
+        <thead class="thead-dark">
             <tr>
                 <th>@sortablelink('name', 'Project Name')</th>
-                <th>Actions</th>
+                <th>@sortablelink('url', 'GitHub URL')</th>
+                <th>Languages</th>
+                <th class="text-right">Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($projects as $project)
             <tr>
                 <td>{{ $project->name }}</td>
+                <td>{{ $project->url }}</td>
                 <td>
-                    <form class="form-inline" action="{{ route('projects.destroy', $project->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <a class="btn btn-sm btn-primary" href="{{ route('projects.edit', $project->id) }}">Edit</a>
-                        &nbsp;<button class="btn btn-sm btn-danger">Delete</button>
+                    @foreach($project->languages as $language)
+                    <div>{{ $language->name }}</div>
+                    @endforeach
+                </td>
+                <td>
+                    <form class="form-inline float-right" action="{{ route('projects.destroy', $project->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this project?')">
+                        @csrf @method('DELETE')
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-outline-dark btn-sm" href="{{ route('projects.edit', $project->id) }}"><i class="fas fa-edit"></i> Edit</a>
+                            <button class="btn btn-outline-dark btn-sm"><i class="fas fa-times"></i> Delete</button>
+                        </div>
                     </form>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-</div>
-{{ $projects->appends(\Request::except('page'))->links() }}
+    {{ $projects->appends(\Request::except('page'))->links() }}
+    <a href="{{ route('projects.import') }}" class="btn btn-outline-dark"><i class="fab fa-github"></i> Import from GitHub</a>
+</section>
 @endsection

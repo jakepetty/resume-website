@@ -9,9 +9,15 @@ class Project extends Model
 {
     use Sortable;
     protected $fillable = [
-        'name', 'description', 'url', 'language', 'github_id'
+        'name', 'description', 'url', 'language', 'homepage', 'github_id'
     ];
     protected $sortable = [
-        'name', 'description', 'url', 'language', 'github_id'
+        'name', 'description', 'url', 'language', 'homepage', 'github_id'
     ];
+
+    public function languages()
+    {
+        return $this->belongsToMany('App\Language')
+            ->withTimestamps();
+    }
 }

@@ -19,6 +19,7 @@ class CreateProjectsTable extends Migration
             $table->text('description')->nullable();
             $table->string('language');
             $table->string('url');
+            $table->string('homepage')->nullable();
             $table->integer('github_id');
             $table->timestamps();
         });

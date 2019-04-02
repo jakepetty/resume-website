@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\Language;
 use Cache;
 use Illuminate\Http\Request;
+use App\Classes\GithubClass;
 
 class ProjectsController extends Controller
 {
@@ -16,9 +18,7 @@ class ProjectsController extends Controller
     public function index()
     {
         //
-        $this->getRepos();
-        $projects = Project::sortable()->paginate(6);
-
+        $projects = Project::sortable()->paginate(15);
         return view('projects.index', compact('projects'));
     }
 
@@ -80,6 +80,7 @@ class ProjectsController extends Controller
             'name' => 'required|min:10',
             'description' => 'required',
             'url' => 'required',
+            'homepage' => 'nullable|url',
             'language' => 'required'
         ]);
         if ($request->image) {
@@ -107,21 +108,25 @@ class ProjectsController extends Controller
         }
         return back();
     }
-    private function getRepos()
+    /**
+     * Pulls new repos from github.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function import()
     {
 
-        if (($repos = Cache::get('repos', [])) == false) {
-            $ch = curl_init(config('app.github.api'));
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER["HTTP_USER_AGENT"]);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $repos = json_decode(curl_exec($ch));
-            Cache::put('repos', $repos, 3600);
-            curl_close($ch);
-        }
-
+        $github = new GithubClass();
+        $repos = $github->get("https://api.github.com/user/repos");
         foreach ($repos as $repo) {
-
+            $langs = [];
+            $languages = $github->get($repo->languages_url);
+            foreach ($languages as $lang => $count) {
+                if ($lang != 'Hack') {
+                    $language = Language::firstOrCreate(['name' => $lang]);
+                    $langs[] = $language->id;
+                }
+            }
             // Convert name to Human Readable
             $name = ucwords(str_replace('-', ' ', $repo->name));
             $name = str_replace('Php', 'PHP', $name);
@@ -141,17 +146,20 @@ class ProjectsController extends Controller
                 }
 
                 // Build the model
-                $project = [
+                $data = [
                     'name' => $name,
                     'description' => $repo->description,
                     'url' => $repo->html_url,
                     'language' => $repo->language,
+                    'homepage' => $repo->homepage,
                     'github_id' => $repo->id
                 ];
 
                 // Save the project to database
-                Project::create($project);
+                $project = Project::create($data);
+                $project->languages()->attach($langs);
             }
         }
+        return back();
     }
 }
