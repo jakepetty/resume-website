@@ -6,7 +6,7 @@
 
         <div class="form-group">
             <label for="skill-name">Name</label>
-            <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : ($errors->any() ? 'is-valid' : null) }}" id="skill-name" name="name" value="{{ old('name', $skill->name) }}">
+            <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : ($errors->any() ? 'is-valid' : null) }}" id="skill-name" name="name" value="{{ old('name', $skill->name) }}" required>
             @if($errors->has('name'))
             <div class="invalid-feedback">{{ $errors->first('name') }}</div>
             @endif
