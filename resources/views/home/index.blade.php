@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center scroll-down">
-                <a href="#projects" class="fas fa-chevron-down"></a>
+                <a href="#essentials" class="fas fa-chevron-down animated heartBeat infinite"></a>
             </div>
         </div>
         <div class="col full-height order-first order-md-last" id="about">
@@ -96,8 +96,6 @@
                         <div class="d-flex mt-auto justify-content-between">
                             <span class="justify-content-center align-self-center" style="font-size:inherit">
                                 <button type="button" class="btn btn-outline-dark" data-trigger="focus" data-toggle="popover" title="Languages" data-content="@foreach($project->languages as $language) {{ $language->name }} @endforeach"><i class="fas fa-info"></i></button>
-
-
                             </span>
                             <div class="d-flex">
                                 <a href="{{ $project->url }}" target="blank" class="btn btn-outline-dark"><i class="fas fa-code"></i></a>
