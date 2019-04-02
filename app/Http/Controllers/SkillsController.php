@@ -15,7 +15,7 @@ class SkillsController extends Controller
     public function index()
     {
         //
-        $skills = Skill::sortable()->paginate(10);
+        $skills = Skill::sortable()->paginate(15);
 
         return view('skills.index', compact('skills'));
     }
