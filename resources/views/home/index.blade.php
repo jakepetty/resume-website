@@ -42,15 +42,38 @@
                         Full-Stack Developer
                     </div>
                     <div class="links">
-
-                        <a href="{{ config('app.github.url') }}" class="fab fa-github animated heartBeat infinite" target="blank"></a
+                        <a href="https://github.com/{{ config('app.github.username') }}" class="fab fa-github animated heartBeat infinite" target="blank"></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </header>
-<section id="projects" class="alt">
+<section id="essentials" class="alt">
+    <h2>Tool Experience</h2>
+    <div class="row">
+        <style>
+            .progress {
+                border-radius:2.5px;
+                height:5px;
+            }
+            .bg-primary {
+                border-radius:3px;
+                background: #090b10!important
+            }
+        </style>
+        @foreach($tools as $tool)
+        <div class="col-4 mb-5">
+            <div>{{ $tool->name }}<span class="float-right badge badge-secondary">{{ $tool->end_date - $tool->start_date }} {{ ($tool->end_date - $tool->start_date > 1)? 'years' : 'year' }}</span></div>
+
+            <div class="progress mt-2 mb-2">
+                <div class="progress-bar bg-primary" style="width: {{ $tool->level }}%" role="progressbar" aria-valuenow="{{ $tool->level }}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</section>
+<section id="projects">
     <div class="container-fluid">
         <h2 class="mb-4">Projects</h2>
         <div class="text-center mb-5">Some projects I've created in my free time</div>
@@ -58,17 +81,26 @@
             @foreach($projects as $project)
             <div class="col-lg-6 col-xl-2 d-flex pb-3">
                 <div class="card">
+                    @if($project->homepage)
+                    <div class="card-img-top" style="background-image: url(/images/projects/{{ $project->id }}.jpg)">
+                        <div class="hover-link row h-100 justify-content-center align-items-center">
+                            <a href="{{ $project->homepage }}" class="btn btn-outline-light" target="_blank">Demo</a>
+                        </div>
+                    </div>
+                    @else
                     <div class="card-img-top" style="background-image: url(/images/projects/{{ $project->id }}.jpg)"></div>
-                    <!--<img src="/images/icons/{{ $project->language }}.png" class="card-img-top" style="padding:20px 10px" alt="..." />-->
+                    @endif
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ $project->name }}</h5>
                         <p class="card-text">{{ $project->description }}</p>
                         <div class="d-flex mt-auto justify-content-between">
-                            <span class="badge badge-primary justify-content-center align-self-center" style="font-size:inherit">
-                                {{ $project->language }}
+                            <span class="justify-content-center align-self-center" style="font-size:inherit">
+                                <button type="button" class="btn btn-outline-dark" data-trigger="focus" data-toggle="popover" title="Languages" data-content="@foreach($project->languages as $language) {{ $language->name }} @endforeach"><i class="fas fa-info"></i></button>
+
+
                             </span>
                             <div class="d-flex">
-                                <a href="{{ $project->url }}" target="blank" class="btn btn-outline-dark">View Source</a>
+                                <a href="{{ $project->url }}" target="blank" class="btn btn-outline-dark"><i class="fas fa-code"></i></a>
                             </div>
                         </div>
                     </div>
@@ -77,11 +109,11 @@
             @endforeach
         </div>
         <div class="d-flex justify-content-center">
-            <a href="{{ config('app.github.url') }}" target="blank" class="btn btn-lg btn-outline-dark view-more">View All Projects</a>
+            <a href="https://github.com/{{ config('app.github.username') }}?tab=repositories" target="blank" class="btn btn-lg btn-outline-dark view-more">View All Projects</a>
         </div>
     </div>
 </section>
-<section id="contact">
+<section id="contact" class="alt">
     <div class="container">
         <h2>Contact Me</h2>
         <form action="{{ route('contact.send') }}" method="POST">
