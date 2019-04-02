@@ -6,7 +6,6 @@
         <thead class="thead-dark">
             <tr>
                 <th>@sortablelink('name', 'Project Name')</th>
-                <th>@sortablelink('url', 'GitHub URL')</th>
                 <th>Languages</th>
                 <th class="text-right">Actions</th>
             </tr>
@@ -15,10 +14,9 @@
             @foreach ($projects as $project)
             <tr>
                 <td>{{ $project->name }}</td>
-                <td>{{ $project->url }}</td>
                 <td>
                     @foreach($project->languages as $language)
-                    <div>{{ $language->name }}</div>
+                    <span class="badge badge-primary">{{ $language->name }}</span>
                     @endforeach
                 </td>
                 <td>
@@ -26,6 +24,7 @@
                         @csrf @method('DELETE')
                         <div class="btn-group" role="group">
                             <a class="btn btn-outline-dark btn-sm" href="{{ route('projects.edit', $project->id) }}"><i class="fas fa-edit"></i> Edit</a>
+                            <a class="btn btn-outline-dark btn-sm" href="{{ $project->url }}" target="_blank"><i class="fas fa-code"></i> Source</a>
                             <button class="btn btn-outline-dark btn-sm"><i class="fas fa-times"></i> Delete</button>
                         </div>
                     </form>

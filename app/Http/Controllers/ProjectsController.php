@@ -63,7 +63,8 @@ class ProjectsController extends Controller
     public function edit(Project $project)
     {
         //
-        return view('projects.edit', compact('project'));
+        $languages = Language::all();
+        return view('projects.edit', compact('project', 'languages'));
     }
 
     /**
@@ -81,12 +82,13 @@ class ProjectsController extends Controller
             'description' => 'required',
             'url' => 'required',
             'homepage' => 'nullable|url',
-            'language' => 'required'
+            'languages' => 'required'
         ]);
         if ($request->image) {
             $request->image->move(public_path('/images/projects'), $project->id . '.' . $request->image->getClientOriginalExtension());
         }
         $project->update($data);
+        $project->languages()->sync($request->languages);
 
         return redirect(route('projects.index'));
     }
@@ -150,7 +152,6 @@ class ProjectsController extends Controller
                     'name' => $name,
                     'description' => $repo->description,
                     'url' => $repo->html_url,
-                    'language' => $repo->language,
                     'homepage' => $repo->homepage,
                     'github_id' => $repo->id
                 ];
