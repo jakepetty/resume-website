@@ -21,3 +21,11 @@ window.onload = function () {
     $('.loading').fadeOut();
     $('*[data-toggle="popover"]').popover()
 }
+$('.navbar a').each(function () {
+    var el = $(this);
+    var url = el.attr('href');
+    var loc = window.location.href;
+    if (url == loc) {
+        el.parent().addClass('active');
+    }
+});
