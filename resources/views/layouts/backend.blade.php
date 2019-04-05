@@ -45,20 +45,20 @@
                             @endif
                         @else
                         <li class="nav-item">
+                            <a class="nav-link" href="/"><i class="fas fa-desktop"></i> {{ __('Frontend') }}</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('skills.index') }}"><i class="fas fa-graduation-cap"></i> {{ __('Skills') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('projects.index') }}"><i class="fab fa-github"></i> {{ __('Projects') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('tools.index') }}"><i class="fas fa-code"></i> {{ __('Tools') }}</a>
+                            <form id="logout-form" class="form-inline" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button class="btn btn-outline-light"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                            </form>
                         </li>
-                            <li class="nav-item">
-                                <form id="logout-form" class="form-inline" action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button class="btn btn-outline-light"><i class="fas fa-sign-out-alt"></i> Logout</button>
-                                </form>
-                            </li>
                         @endguest
                     </ul>
                 </div>

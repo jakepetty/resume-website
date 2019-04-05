@@ -16,9 +16,8 @@ class HomeController extends Controller
     public function index()
     {
         $skills = \App\Skill::all();
-        $tools = \App\Tool::all();
         $projects = \App\Project::all()->sortBy('github_id');
 
-        return view('home.index', compact('skills', 'projects', 'tools'));
+        return view('home.index', compact('skills', 'projects'));
     }
 }
