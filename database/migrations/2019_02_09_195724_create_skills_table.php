@@ -18,7 +18,6 @@ class CreateSkillsTable extends Migration
             $table->string('name')->unique();
             $table->date('start_date');
             $table->date('end_date');
-            $table->tinyInteger('level');
             $table->timestamps();
         });
     }

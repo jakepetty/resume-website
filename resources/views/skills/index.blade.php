@@ -8,7 +8,6 @@
                 <th>@sortablelink('name', 'Skill')</th>
                 <th>@sortablelink('start_date', 'Start Date')</th>
                 <th>@sortablelink('end_date', 'End Date')</th>
-                <th>@sortablelink('level', 'Proficiency')</th>
                 <th class="text-right">Actions</th>
             </tr>
         </thead>
@@ -18,7 +17,6 @@
                 <td>{{ $skill->name }}</td>
                 <td>{{ $skill->start_date }}</td>
                 <td>{{ $skill->end_date }}</td>
-                <td>{{ $skill->level }}%</td>
                 <td>
                     <form class="form-inline float-right" action="{{ route('skills.destroy', $skill->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this skill?')">
                         @csrf @method('DELETE')

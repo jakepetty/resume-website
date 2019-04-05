@@ -25,13 +25,6 @@
             <div class="invalid-feedback">{{ $errors->first('end_date') }}</div>
             @endif
         </div>
-        <div class="form-group">
-            <label for="skill-level">Proficiency</label>
-            <input type="number" class="form-control {{ $errors->has('level') ? 'is-invalid' : ($errors->any() ? 'is-valid' : null) }}" id="skill-level" name="level" min="0" max="100" value="{{ old('level') }}" value="{{ old('level') }}" required>
-            @if($errors->has('level'))
-            <div class="invalid-feedback">{{ $errors->first('level') }}</div>
-            @endif
-        </div>
         <button class="btn btn-outline-dark"><i class="fas fa-plus"></i> Create</button>
     </form>
 </section>
