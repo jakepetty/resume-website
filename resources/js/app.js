@@ -6,13 +6,9 @@ for (var i = 0; i < divs.length; i += max_per_column) {
 }
 $('.skill').each(function (i) {
     var el = $(this);
-    var progress = $('.progress-bar', el);
-    var percent = progress.data('level') / 100;
-    var parent_width = progress.parent().width();
     setTimeout(function () {
         setTimeout(function () {
             el.css({ opacity: 1 }).addClass('animated flipInX');
-            progress.animate({ width: (parent_width * percent) + "px" }, 1000);
         }, 150 * i);
     }, 1000);
 });

@@ -18,6 +18,7 @@
 @import "forms";
 @import "tables";
 @import "navbars";
+@import "badges";
 html {
   overflow: scroll;
   overflow-x: hidden;
@@ -71,33 +72,6 @@ i {
 
 .content {
   text-align: center;
-}
-
-.title {
-  font-family: "Poiret One";
-  font-size: 84px;
-  margin-bottom: 30px;
-}
-
-$hex-size: 360px;
-.hexa,
-.hexa div {
-  margin: 0 auto;
-  transform-origin: 50% 50%;
-  overflow: hidden;
-  transform: rotate(240deg);
-  width: $hex-size - 95;
-  height: $hex-size;
-}
-
-.hex {
-  transform: rotate(-120deg);
-  .portrait {
-    transform: rotate(-120deg);
-    background-image: url("/images/portrait.jpg");
-    background-size: cover;
-    background-position: top;
-  }
 }
 
 .alt {

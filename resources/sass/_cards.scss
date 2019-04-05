@@ -1,23 +1,29 @@
-.card-title {
-  font-weight: 600;
-}
-.card-text {
-  line-height: 2em;
-}
-.card-img-top {
-  background-image: url(https://github.com/carlymarie/Thermostat-Display/raw/dev/docs/promo.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 200px;
-  width: 100%;
-  overflow: hidden;
-}
-.hover-link {
-  opacity: 0;
-  transition: 1s;
-  background-color: rgba($dark-blue, 0.75);
-}
-.card:hover .hover-link {
-  opacity: 100;
+.card {
+  box-shadow: 0 0 10px #ddd;
+  border: none;
+  margin-bottom: 14px;
+  &:hover {
+    .hover-link {
+      opacity: 100;
+    }
+  }
+  .card-title {
+    font-weight: 600;
+  }
+  .card-text {
+    line-height: 2em;
+  }
+  .card-img-top {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 240px;
+    width: 100%;
+    overflow: hidden;
+  }
+  .hover-link {
+    opacity: 0;
+    transition: 1s;
+    background-color: rgba($dark-blue, 0.75);
+  }
 }
