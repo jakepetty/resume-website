@@ -7,6 +7,7 @@ use App\Language;
 use Cache;
 use Illuminate\Http\Request;
 use App\Classes\GithubClass;
+use Image;
 
 class ProjectsController extends Controller
 {
@@ -85,7 +86,7 @@ class ProjectsController extends Controller
             'languages' => 'required'
         ]);
         if ($request->image) {
-            $request->image->move(public_path('/images/projects'), $project->id . '.' . $request->image->getClientOriginalExtension());
+            Image::make($request->image->getPathname())->fit(320, 240)->save(public_path('images/projects/') . $project->id . '.jpg', 100);
         }
         $project->update($data);
         $project->languages()->sync($request->languages);
