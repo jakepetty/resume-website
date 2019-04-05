@@ -14,7 +14,7 @@
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/animate.min.css') }}" rel="stylesheet">
-
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 
 <body class="no-scroll">
