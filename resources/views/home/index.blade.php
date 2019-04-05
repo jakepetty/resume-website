@@ -9,13 +9,12 @@
                     <div class="row">
                         @foreach($skills as $skill)
                         <div class="skill">
-                            <div class="name">{{ $skill->name }}
-                                <span class="experience">{{ $skill->end_date - $skill->start_date }}
-                                    {{ $skill->end_date - $skill->start_date > 1 ? 'years':'year' }}
-                                </span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar" data-level="{{ $skill->level }}" role="progressbar"></div>
+                            <div class="name">
+                                <span class="fa-stack fa-1x">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fas fa-check fa-stack-1x fa-inverse"></i>
+                                </span> {{ $skill->name }}
+                                <span class="badge badge-accent">{{ $skill->end_date - $skill->start_date }} {{ $skill->end_date - $skill->start_date > 1 ? 'years':'year' }}</span>
                             </div>
                         </div>
                         @endforeach
@@ -29,11 +28,6 @@
         <div class="col full-height order-first order-md-last" id="about">
             <div class="row h-100 justify-content-center align-items-center">
                 <div class="content">
-                    <div class="hexa">
-                        <div class="hex">
-                            <div class="portrait"></div>
-                        </div>
-                    </div>
                     <div class="title">
                         {{ config('app.name') }}
                     </div>
@@ -49,38 +43,14 @@
         </div>
     </div>
 </header>
-<section id="essentials" class="alt">
-    <h2>Tool Experience</h2>
-    <div class="row">
-        <style>
-            .progress {
-                border-radius:2.5px;
-                height:5px;
-            }
-            .bg-primary {
-                border-radius:3px;
-                background: #090b10!important
-            }
-        </style>
-        @foreach($tools as $tool)
-        <div class="col-4 mb-5">
-            <div>{{ $tool->name }}<span class="float-right badge badge-secondary">{{ $tool->end_date - $tool->start_date }} {{ ($tool->end_date - $tool->start_date > 1)? 'years' : 'year' }}</span></div>
-
-            <div class="progress mt-2 mb-2">
-                <div class="progress-bar bg-primary" style="width: {{ $tool->level }}%" role="progressbar" aria-valuenow="{{ $tool->level }}" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-        </div>
-        @endforeach
-    </div>
-</section>
-<section id="projects">
+<section id="projects" class="alt">
     <div class="container-fluid">
         <h2 class="mb-4">Projects</h2>
         <div class="text-center mb-5">Some projects I've created in my free time</div>
-        <div class="row equal">
+        <div class="row">
             @foreach($projects as $project)
-            <div class="col-lg-6 col-xl-2 d-flex pb-3">
-                <div class="card">
+            <div class="col-md-6 col-lg-4 col-xl-3 d-flex">
+                <div class="card flex-fill">
                     @if($project->homepage)
                     <div class="card-img-top" style="background-image: url(/images/projects/{{ $project->id }}.jpg)">
                         <div class="hover-link row h-100 justify-content-center align-items-center">
@@ -90,17 +60,13 @@
                     @else
                     <div class="card-img-top" style="background-image: url(/images/projects/{{ $project->id }}.jpg)"></div>
                     @endif
-                    <div class="card-body d-flex flex-column">
+                    <div class="card-body">
                         <h5 class="card-title">{{ $project->name }}</h5>
                         <p class="card-text">{{ $project->description }}</p>
-                        <div class="d-flex mt-auto justify-content-between">
-                            <span class="justify-content-center align-self-center" style="font-size:inherit">
-                                <button type="button" class="btn btn-outline-dark" data-trigger="focus" data-toggle="popover" title="Languages" data-content="@foreach($project->languages as $language) {{ $language->name }} @endforeach"><i class="fas fa-info"></i></button>
-                            </span>
-                            <div class="d-flex">
-                                <a href="{{ $project->url }}" target="blank" class="btn btn-outline-dark"><i class="fas fa-code"></i></a>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-outline-dark" style="min-width: 48px" data-trigger="focus" data-toggle="popover" title="Languages" data-html="true" data-content="@foreach($project->languages as $language) <div>{{ $language->name }}</div> @endforeach"><i class="fas fa-info"></i></a>
+                        <a href="{{ $project->url }}" target="blank" class="btn btn-outline-dark float-right"><i class="fas fa-code"></i></a>
                     </div>
                 </div>
             </div>
@@ -111,7 +77,7 @@
         </div>
     </div>
 </section>
-<section id="contact" class="alt">
+<section id="contact">
     <div class="container">
         <h2>Contact Me</h2>
         <form action="{{ route('contact.send') }}" method="POST">
@@ -147,5 +113,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ mix('js/canvas.js') }}"></script>
+<script src="{{ mix('js/canvas.js') }}"></script>
 @endsection
