@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use App\Language;
-use Cache;
 use Illuminate\Http\Request;
 use App\Classes\GithubClass;
 use Image;
@@ -21,16 +20,6 @@ class ProjectsController extends Controller
         //
         $projects = Project::sortable()->paginate(15);
         return view('projects.index', compact('projects'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**

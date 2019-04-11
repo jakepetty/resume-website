@@ -3,11 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Mail;
-use Illuminate\Mail\Mailable;
-use App\Mail\ContactEmail;
 use App\Jobs\SendEmailJob;
-use Carbon\Carbon;
 
 class ContactController extends Controller
 {
