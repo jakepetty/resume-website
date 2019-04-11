@@ -16462,7 +16462,6 @@ readers do not read off random characters that represent icons */
 }
 
 #skills {
-  overflow: hidden;
   background: #090b10;
   z-index: 0;
 }
@@ -16521,7 +16520,7 @@ readers do not read off random characters that represent icons */
 .card {
   box-shadow: 0 0 10px #ddd;
   border: none;
-  margin-bottom: 14px;
+  margin-bottom: 30px;
 }
 
 .card:hover .hover-link {

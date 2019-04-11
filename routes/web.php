@@ -20,8 +20,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('/dashboard', 'DashboardController');
     Route::resource('/skills', 'SkillsController');
     Route::resource('/projects', 'ProjectsController');
-    Route::resource('/tools', 'ToolsController');
+    Route::resource('/jobs', 'ResumeJobsController');
+    Route::resource('/educations', 'EducationsController');
+    Route::resource('/cover_letters', 'CoverLettersController');
 });
-
+Route::get('/resume', 'ResumeController@index')->name('resume.index');
 Route::post('/contact', 'ContactController@send')->name('contact.send');
-

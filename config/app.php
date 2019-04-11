@@ -5,6 +5,17 @@ return [
         'username' => env('GITHUB_USERNAME', ''),
         'password' => env('GITHUB_PASSWORD', '')
     ],
+    'resume' => [
+        'name' => env('RESUME_NAME', 'John Doe'),
+        'email' => env('RESUME_EMAIL', 'example@example.com'),
+        'phone' => env('RESUME_PHONE', '(123) 456-7890'),
+        'location' => [
+            'street' => env('RESUME_LOCATION_STREET', 'P.O. Box 963'),
+            'city' => env('RESUME_LOCATION_CITY', 'New York'),
+            'state' => env('RESUME_LOCATION_STATE', 'NY'),
+            'zip' => env('RESUME_LOCATION_ZIP', '10108')
+        ]
+    ],
     /*
     |--------------------------------------------------------------------------
     | Application Name

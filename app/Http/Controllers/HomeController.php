@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Cache;
-
+use App\Skill;
+use App\Project;
 class HomeController extends Controller
 {
 
@@ -15,8 +14,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $skills = \App\Skill::all();
-        $projects = \App\Project::all()->sortBy('github_id');
+        $skills = Skill::where('is_public', true)->get();
+        $projects = Project::all()->sortBy('github_id');
 
         return view('home.index', compact('skills', 'projects'));
     }

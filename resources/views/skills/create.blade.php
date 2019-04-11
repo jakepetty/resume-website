@@ -13,14 +13,14 @@
         </div>
         <div class="form-group">
             <label for="skill-start-date">Start Year</label>
-            <input type="number" class="form-control {{ $errors->has('start_date') ? 'is-invalid' : ($errors->any() ? 'is-valid' : null) }}" id="skill-start-date" name="start_date" min="2003" max="{{ date('Y')}}" value="{{ old('start_date') }}" value="{{ old('start_date') }}" required>
+            <input type="number" class="form-control {{ $errors->has('start_date') ? 'is-invalid' : ($errors->any() ? 'is-valid' : null) }}" id="skill-start-date" name="start_date" min="1950" max="{{ date('Y')}}" value="{{ old('start_date') }}" required>
             @if($errors->has('start_date'))
             <div class="invalid-feedback">{{ $errors->first('start_date') }}</div>
             @endif
         </div>
         <div class="form-group">
             <label for="skill-end-date">End Year</label>
-            <input type="number" class="form-control {{ $errors->has('end_date') ? 'is-invalid' : ($errors->any() ? 'is-valid' : null) }}" id="skill-end-date" name="end_date" min="2003" max="{{ date('Y')}}" value="{{ old('end_date') }}" value="{{ old('end_date') }}" required>
+            <input type="number" class="form-control {{ $errors->has('end_date') ? 'is-invalid' : ($errors->any() ? 'is-valid' : null) }}" id="skill-end-date" name="end_date" min="1950" max="{{ date('Y')}}" value="{{ old('end_date') }}" required>
             @if($errors->has('end_date'))
             <div class="invalid-feedback">{{ $errors->first('end_date') }}</div>
             @endif

@@ -2,7 +2,7 @@ require('./bootstrap');
 var divs = $("#skills .skill");
 var max_per_column = Math.ceil(divs.length / 2);
 for (var i = 0; i < divs.length; i += max_per_column) {
-    divs.slice(i, i + max_per_column).wrapAll("<div class='col col-sm-6'/>");
+    divs.slice(i, i + max_per_column).wrapAll("<div class='col col-md-6'/>");
 }
 $('.skill').each(function (i) {
     var el = $(this);

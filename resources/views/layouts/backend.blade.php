@@ -15,7 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -44,14 +44,36 @@
                                 </li>
                             @endif
                         @else
+                        <style>
+                            .nav-link {
+                                text-align: center
+                            }
+                            .nav-link .fas, .nav-link .fab, .nav-item .btn .fas {
+                                display:block;
+                                margin-bottom:10px;
+                                font-size:24px;
+                            }
+                        </style>
                         <li class="nav-item">
                             <a class="nav-link" href="/"><i class="fas fa-desktop"></i> {{ __('Frontend') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('projects.index') }}"><i class="fab fa-github"></i> {{ __('Projects') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('skills.index') }}"><i class="fas fa-graduation-cap"></i> {{ __('Skills') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('projects.index') }}"><i class="fab fa-github"></i> {{ __('Projects') }}</a>
+                            <a class="nav-link" href="{{ route('cover_letters.edit', 1) }}"><i class="fas fa-file-invoice"></i> {{ __('Cover Letter') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('jobs.index') }}"><i class="fas fa-briefcase"></i> {{ __('Work History') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('educations.index') }}"><i class="fas fa-graduation-cap"></i> {{ __('Education') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/resume"><i class="fas fa-file-pdf"></i> {{ __('Print Resume') }}</a>
                         </li>
                         <li class="nav-item">
                             <form id="logout-form" class="form-inline" action="{{ route('logout') }}" method="POST">

@@ -42,24 +42,13 @@ class SkillsController extends Controller
         //
         $validatedData = $request->validate([
             'name' => 'required|min:1',
-            'start_date' => 'required|numeric|min:2003|max:' . date('Y'),
-            'end_date' => 'required|numeric|min:2003|max:' . date('Y'),
-            'level' => 'required|numeric|min:0|max:100',
+            'start_date' => 'required|numeric|min:1950|max:' . date('Y'),
+            'end_date' => 'required|numeric|min:1950|max:' . date('Y'),
+            'is_public' => 'boolean|nullable'
         ]);
         Skill::create($validatedData);
 
         return redirect(route('skills.index'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Skill  $skill
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Skill $skill)
-    {
-        //
     }
 
     /**
@@ -84,13 +73,14 @@ class SkillsController extends Controller
     public function update(Request $request, Skill $skill)
     {
         //
-        $validatedData = $request->validate([
+        $data = $request->validate([
             'name' => 'required|min:1',
-            'start_date' => 'required|numeric|min:2003|max:' . date('Y'),
-            'end_date' => 'required|numeric|min:2003|max:' . date('Y'),
-            'level' => 'required|numeric|min:0|max:100',
+            'start_date' => 'required|numeric|min:1950|max:' . date('Y'),
+            'end_date' => 'required|numeric|min:1950|max:' . date('Y'),
+            'is_public' => 'boolean|nullable'
         ]);
-        $skill->update($validatedData);
+
+        $skill->update($data);
 
         return redirect(route('skills.index'));
     }

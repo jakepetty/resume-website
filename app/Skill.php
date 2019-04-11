@@ -8,6 +8,6 @@ class Skill extends Model
 {
     //
     use Sortable;
-    protected $fillable = ['name', 'start_date', 'end_date', 'level'];
-    public $sortable = ['name', 'start_date', 'end_date', 'level'];
+    protected $fillable = ['name', 'start_date', 'end_date', 'is_public'];
+    public $sortable = ['name', 'start_date', 'end_date', 'is_public'];
 }
