@@ -4,6 +4,7 @@ var max_per_column = Math.ceil(divs.length / 2);
 for (var i = 0; i < divs.length; i += max_per_column) {
     divs.slice(i, i + max_per_column).wrapAll("<div class='col col-md-6'/>");
 }
+$('#skills .col-md-6:last').addClass('d-none d-lg-inline-block');
 $('.skill').each(function (i) {
     var el = $(this);
     setTimeout(function () {
