@@ -9,7 +9,7 @@ if (canvas) {
     var max_circles = 10;
     var circleArray = [];
     for (var i = 0; i < max_circles; i++) {
-        var radius = Math.random() * 5;
+        var radius = Math.random() * 10;
         var x = Math.random() * (parentWidth - radius * 2) + radius;
         var y = Math.random() * (parentHeight - radius * 2) + radius;
         var dx = Math.random() - 0.5;
@@ -23,12 +23,12 @@ if (canvas) {
         this.dx = Math.random() * dx * 8;
         this.dy = Math.random() * dy * 8;
         this.radius = radius;
-        // var r = Math.random() * 255;
-        // var g = Math.random() * 255;
-        // var b = Math.random() * 255;
-        var r = 37;
-        var g = 45;
-        var b = 66;
+        var r = Math.random() * 255;
+        var g = Math.random() * 255;
+        var b = Math.random() * 255;
+        //var r = 200;
+        //var g = 200;
+        //var b = 200;
         this.draw = function () {
             c.beginPath();
             c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);

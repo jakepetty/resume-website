@@ -1,6 +1,11 @@
 #skills {
+  position: relative;
   background: $dark-blue;
-  z-index: 0;
+  z-index: 1;
+  .row {
+    position: relative;
+    z-index: 1000;
+  }
   &:after {
     content: " ";
     position: absolute;
