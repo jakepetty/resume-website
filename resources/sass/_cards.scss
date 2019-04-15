@@ -1,5 +1,4 @@
 .card {
-  box-shadow: 0 0 10px #ddd;
   border: none;
   margin-bottom: 30px;
   &:hover {
@@ -24,6 +23,9 @@
   .hover-link {
     opacity: 0;
     transition: 1s;
-    background-color: rgba($dark-blue, 0.75);
+  }
+  .card-footer {
+    border: none;
+    background: none;
   }
 }

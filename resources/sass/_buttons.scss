@@ -16,4 +16,14 @@
       margin-top: 35px;
     }
   }
+  &.btn-red {
+    color: #fff;
+    box-shadow: 0 1px 6px rgba(87, 86, 105, 0.3);
+    font-weight: 600;
+    border: none;
+    background: #fa807c;
+    &:hover {
+      background-color: #fb9390;
+    }
+  }
 }

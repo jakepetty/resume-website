@@ -43,31 +43,27 @@
             </div>
         </div>
     </header>
-    <section id="projects" class="alt">
+    <section id="projects">
         <div class="container-fluid">
             <h2 class="mb-4">Projects</h2>
-            <div class="text-center mb-5">Some projects I've created in my free time</div>
+            <div class="text-center mb-5">Some projects I've created both professionally and in my free time</div>
             <div class="row">
                 @foreach($projects as $project)
                     <div class="col-md-6 col-lg-4 col-xl-3 d-flex">
                         <div class="card flex-fill">
-                            @if($project->homepage)
                                 <div class="card-img-top" style="background-image: url(/images/projects/{{ $project->id }}.jpg)">
                                     <div class="hover-link row h-100 justify-content-center align-items-center">
-                                        <a href="{{ $project->homepage }}" class="btn btn-outline-light" target="_blank">Demo</a>
+                                        <div class="btn-group">
+                                            @if($project->homepage)
+                                                <a href="{{ $project->homepage }}" class="btn btn-red" target="_blank"><i class="fas fa-eye"></i> Demo</a>
+                                            @endif
+                                            <a href="{{ $project->url }}" target="blank" class="btn btn-red float-right"><i class="fas fa-code"></i> Code</a>
+                                        </div>
                                     </div>
                                 </div>
-                            @else
-                                <div class="card-img-top" style="background-image: url(/images/projects/{{ $project->id }}.jpg)"></div>
-                            @endif
                             <div class="card-body">
                                 <h5 class="card-title">{{ $project->name }}</h5>
                                 <p class="card-text">{{ $project->description }}</p>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-outline-dark" style="min-width: 48px" data-trigger="focus" data-toggle="popover" title="Languages" data-html="true" data-content="@foreach($project->languages as $language) <div>{{ $language->name }}</div> @endforeach">
-                                    <i class="fas fa-info"></i></button>
-                                <a href="{{ $project->url }}" target="blank" class="btn btn-outline-dark float-right"><i class="fas fa-code"></i> Code</a>
                             </div>
                         </div>
                     </div>
@@ -78,7 +74,7 @@
             </div>
         </div>
     </section>
-    <section id="contact">
+    <section id="contact" class="alt">
         <div class="container">
             <h2>Contact Me</h2>
             <form action="{{ route('contact.send') }}" method="POST">
