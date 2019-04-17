@@ -11,8 +11,6 @@ const mix = require('laravel-mix');
  |
  */
 mix
-   .copy('node_modules/animate.css/animate.min.css', 'public/css')
    .js('resources/js/app.js', 'public/js')
-   .js('resources/js/canvas.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css')
    .version();

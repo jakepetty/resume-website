@@ -1,0 +1,30 @@
+.heading {
+  text-align: center;
+  margin-bottom: 150px;
+  border-bottom: 5px dotted darken($accent-light, 5);
+  height: 40px;
+  h2 {
+    font-family: "Montserrat", sans-serif;
+    background: #fff;
+    padding: 0 50px;
+    display: inline-block;
+    font-size: 2em;
+    margin: 0;
+    span {
+      font-size: 2em;
+      font-style: italic;
+      font-weight: bold;
+      color: $accent-color;
+    }
+  }
+  .lead {
+    background-color: $accent-light;
+    padding: 10px;
+    border-radius: 30px;
+    font-size: 1.5rem;
+    color: $accent-dark;
+  }
+}
+h3 {
+  text-align: center;
+}

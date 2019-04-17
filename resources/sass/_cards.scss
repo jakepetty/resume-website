@@ -1,31 +1,50 @@
-.card {
-  border: none;
-  margin-bottom: 30px;
-  &:hover {
+#projects {
+  .card {
+    text-align: center;
+    border: none;
+    margin-bottom: 20px;
+    .card-img-top {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 260px;
+    }
+    @include media-breakpoint-down(sm) {
+      padding: 20px;
+      .card-img-top {
+        height: 300px;
+      }
+    }
+    .card-title {
+      font-weight: 600;
+      font-family: "Open Sans Condensed", sans-serif;
+      font-size: 1.5rem;
+      margin-top: -30px;
+    }
     .hover-link {
-      opacity: 100;
+      opacity: 0;
+      font-family: "Open Sans";
+      transition: 0.25s;
+    }
+    &:hover {
+      .hover-link {
+        opacity: 1;
+      }
     }
   }
-  .card-title {
-    font-weight: 600;
-  }
-  .card-text {
-    line-height: 2em;
-  }
-  .card-img-top {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 240px;
-    width: 100%;
+}
+#skills {
+  .card {
     overflow: hidden;
-  }
-  .hover-link {
-    opacity: 0;
-    transition: 0.25s;
-  }
-  .card-footer {
+    border-radius: 10px;
     border: none;
-    background: none;
+    box-shadow: 0 0 10px #eee;
+    .card-header {
+      background-color: $accent-dark;
+      color: #fff;
+      border-bottom:5px solid $accent-color;
+      text-align: center;
+      font-weight: 600;
+    }
   }
 }

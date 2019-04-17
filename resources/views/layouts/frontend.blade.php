@@ -8,19 +8,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name') }}</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/animate.min.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 
-<body class="no-scroll">
-    <div id="app">
+<body data-spy="scroll" data-target=".navbar">
+    <main id="app" class="h-100">
         @yield('content')
-    </div>
+    </main>
     <script src="{{ mix('js/app.js') }}"></script>
     @yield('scripts')
 </body>
