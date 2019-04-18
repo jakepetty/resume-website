@@ -20,6 +20,7 @@ class CreateProjectsTable extends Migration
             $table->text('description')->nullable();
             $table->string('url')->nullable();
             $table->string('demo')->nullable();
+            $table->integer('order')->unsigned()->default(0);
             $table->timestamps();
         });
     }

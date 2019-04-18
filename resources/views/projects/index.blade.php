@@ -2,7 +2,7 @@
 @section('content')
     <section class="container">
         <h2>Project Management</h2>
-        <table class="table table-borderless table-hover">
+        <table class="table table-borderless table-hover table-sortable">
             <thead class="thead-dark">
             <tr>
                 <th></th>
@@ -12,7 +12,7 @@
             </thead>
             <tbody>
             @foreach ($projects as $project)
-                <tr>
+                <tr class="sortable" data-id="{{ $project->id }}">
                     <td><img src="/images/projects/{{ $project->github_id ? $project->github_id : $project->id }}.jpg" width=50 /></td>
                     <td>{{ $project->name }}</td>
                     <td>

@@ -18,7 +18,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $projects = Project::all()->sortBy('github_id');
+        $projects = Project::orderBy('order', 'ASC')->get();
         $languages = Language::all();
         $frameworks = Framework::all();
         $applications = Application::all();

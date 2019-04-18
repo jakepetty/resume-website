@@ -7,6 +7,47 @@ class App {
         $(document).click((e) => {
             $('.navbar-collapse').collapse('hide')
         })
+        this.sortProjects();
+    }
+    sortProjects() {
+        $(".table-sortable").sortable({
+            items: "tr",
+            cursor: 'move',
+            opacity: 0.6,
+            helper: function (e, ui) {
+                ui.children().each(function() {
+                    $(this).width($(this).width());
+                });
+                return ui;
+            },
+            update: function (event, ui) {
+                var order = [];
+                $('tr.sortable').each(function (index, element) {
+                    order.push({
+                        id: $(this).attr('data-id'),
+                        position: index + 1
+                    });
+                }).removeAttr('style');
+
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "/admin/projects/reorder",
+                    data: {
+                        order: order,
+                        _token: $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (response) {
+                        if (response.status == "success") {
+                            console.log(response);
+                        } else {
+                            console.log(response);
+                        }
+                    }
+                });
+            }
+        }).disableSelection();
+
     }
     particles() {
         let _self = this
