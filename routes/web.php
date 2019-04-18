@@ -16,13 +16,16 @@ Route::get('/', 'HomeController@index');
 Auth::routes();
 
 Route::middleware('auth')->prefix('admin')->group(function () {
-    Route::get('/projects/import', 'ProjectsController@import')->name('projects.import');
+    Route::get('/projects/import', 'ProjectController@import')->name('projects.import');
     Route::resource('/dashboard', 'DashboardController');
-    Route::resource('/skills', 'SkillsController');
-    Route::resource('/projects', 'ProjectsController');
-    Route::resource('/jobs', 'ResumeJobsController');
-    Route::resource('/educations', 'EducationsController');
-    Route::resource('/cover_letters', 'CoverLettersController');
+    Route::resource('/applications', 'ApplicationController');
+    Route::resource('/languages', 'LanguageController');
+    Route::resource('/servers', 'ServerController');
+    Route::resource('/frameworks', 'FrameworkController');
+    Route::resource('/projects', 'ProjectController');
+    Route::resource('/experiences', 'ExperienceController');
+    Route::resource('/diplomas', 'DiplomaController');
+    Route::resource('/cover_letters', 'CoverLetterController');
 });
-Route::get('/resume', 'ResumeController@index')->name('resume.index');
+Route::get('/resume/{coverLetter}', 'ResumeController@index')->name('resume.index');
 Route::post('/contact', 'ContactController@send')->name('contact.send');

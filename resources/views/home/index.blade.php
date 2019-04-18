@@ -5,8 +5,8 @@
         <div class="container h-100 animated fadeIn slower">
             <div class="row h-100 justify-content-center align-items-center">
                 <div class="text-center">
-                    <h2 id="name">My name is <strong>{{ config('app.name') }}</strong></h2>
-                    <p id="sub-text">I'm a { <strong class="animated" id="skill">Full-Stack</strong> } Developer</p>
+                    <h2 id="name"><strong>{{ config('app.name') }}</strong></h2>
+                    <p id="sub-text">{ <strong class="animated" id="skill"></strong> } Developer</p>
                 </div>
             </div>
         </div>
@@ -47,13 +47,9 @@
                     <i class="fas fa-code"></i> Languages
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">HTML5</li>
-                    <li class="list-group-item">CSS3 / SCSS / LESS</li>
-                    <li class="list-group-item">JavaScript</li>
-                    <li class="list-group-item">SQL</li>
-                    <li class="list-group-item">PHP5.x to PHP7.x</li>
-                    <li class="list-group-item">C++ / C# / C</li>
-                    <li class="list-group-item">Python</li>
+                    @foreach($languages as $language)
+                    <li class="list-group-item">{{ $language->name }}</li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -63,11 +59,9 @@
                     <i class="fas fa-project-diagram"></i> Frameworks
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="http://jquery.com/">jQuery</a></li>
-                    <li class="list-group-item"><a href="https://getbootstrap.com/">Twitter Bootstrap</a></li>
-                    <li class="list-group-item"><a href="https://laravel.com/">Laravel</a></li>
-                    <li class="list-group-item"><a href="https://cakephp.org/">CakePHP</a></li>
-                    <li class="list-group-item"><a href="https://www.qt.io/">Qt</a></li>
+                    @foreach($frameworks as $framework)
+                    <li class="list-group-item"><a href="{{ $framework->url }}">{{ $framework->name }}</a></li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -77,13 +71,9 @@
                     <i class="fas fa-laptop-code"></i> Applications
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="https://www.adobe.com/products/photoshop.html">Adobe Photoshop</a></li>
-                    <li class="list-group-item"><a href="https://code.visualstudio.com/">VSCode</a></li>
-                    <li class="list-group-item"><a href="https://www.jetbrains.com/phpstorm/">PhpStorm</a></li>
-                    <li class="list-group-item"><a href="https://www.eclipse.org/pdt/">Eclipse PDT</a></li>
-                    <li class="list-group-item"><a href="https://www.qt.io/qt-features-libraries-apis-tools-and-ide/">Qt Creator</a></li>
-                    <li class="list-group-item"><a href="https://www.docker.com/">Docker</a></li>
-                    <li class="list-group-item"><a href="https://git-scm.com/">Version Control (Git)</a></li>
+                    @foreach($applications as $application)
+                    <li class="list-group-item"><a href="{{ $application->url }}">{{ $application->name }}</a></li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -93,10 +83,9 @@
                     <i class="fas fa-server"></i> Servers
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="https://www.mysql.com/">MySQL</a> / <a href="https://mariadb.org/">MariaDB</a></li>
-                    <li class="list-group-item"><a href="https://www.postgresql.org/">PostgreSQL</a></li>
-                    <li class="list-group-item"><a href="https://www.nginx.com/">NGINX</a></li>
-                    <li class="list-group-item"><a href="https://apache.org/">Apache</a></li>
+                    @foreach($servers as $server)
+                    <li class="list-group-item"><a href="{{ $server->url }}">{{ $server->name }}</a></li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -112,10 +101,10 @@
         @foreach($projects as $project)
         <div class="col-md-6 col-lg-5 col-xl-4 d-flex">
             <div class="card flex-fill">
-                <div class="card-img-top" style="background-image: url(images/projects/{{ $project->id }}.jpg)">
+                <div class="card-img-top" style="background-image: url(images/projects/{{ $project->github_id ? $project->github_id : $project->id }}.jpg)">
                     <div class="hover-link row h-100 justify-content-center align-items-center">
                         <div class="btn-group">
-                            @if($project->homepage)<a href="{{ $project->homepage }}" class="btn btn-blue" target="_blank"><i class="fas fa-eye"></i> Demo</a>@endif
+                            @if($project->demo)<a href="{{ $project->demo }}" class="btn btn-blue" target="_blank"><i class="fas fa-eye"></i> Demo</a>@endif
                             <a href="{{ $project->url }}" target="blank" class="btn btn-blue float-right"><i class="fas fa-code"></i> Code</a>
                         </div>
                     </div>

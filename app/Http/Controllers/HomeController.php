@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Skill;
+use App\Language;
+use App\Framework;
 use App\Project;
+use App\Application;
+use App\Server;
+
 class HomeController extends Controller
 {
 
@@ -14,9 +18,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $skills = Skill::where('is_public', true)->get();
         $projects = Project::all()->sortBy('github_id');
-
-        return view('home.index', compact('skills', 'projects'));
+        $languages = Language::all();
+        $frameworks = Framework::all();
+        $applications = Application::all();
+        $servers = Server::all();
+        return view('home.index', compact('projects', 'languages', 'frameworks', 'applications', 'servers'));
     }
 }

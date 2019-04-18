@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 
-<body data-spy="scroll" data-target=".navbar">
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
     <main id="app" class="h-100">
         @yield('content')
     </main>

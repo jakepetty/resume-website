@@ -35,7 +35,7 @@ class App {
     }
     typingAnimation() {
         new Typed("#skill", {
-            strings: ['Front-End', 'Back-End', 'PHP', 'HTML5', 'CSS3', 'JavaScript', 'Laravel', 'CakePHP', 'C', 'C++', 'Full-Stack'],
+            strings: ['Full-Stack', 'Front-End', 'Back-End', 'PHP', 'HTML5', 'CSS3', 'JavaScript', 'Laravel', 'CakePHP', 'C', 'C++'],
             backSpeed: 25,
             showCursor: false,
             typeSpeed: 100,

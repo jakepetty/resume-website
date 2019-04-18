@@ -3,9 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class CoverLetter extends Model
 {
     //
-    protected $fillable = ['content'];
+    use Sortable;
+    protected $fillable = [
+        'name',
+        'body'
+    ];
 }

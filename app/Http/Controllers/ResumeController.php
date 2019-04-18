@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Skill;
-use App\ResumeJob;
+use App\Experience;
+use App\Language;
+use App\Server;
+use App\Framework;
+use App\Application;
+use App\Diploma;
+use App\CoverLetter;
 use App\Classes\ResumeClass;
 
 class ResumeController extends Controller
 {
     //
-    public function index()
+    public function index(CoverLetter $coverLetter)
     {
+        //$coverLetter = CoverLetter::get($id);
         $resume = new ResumeClass();
         $resume->setContactInfo([
             'name' => config('app.resume.name'),
@@ -22,11 +28,18 @@ class ResumeController extends Controller
             'zip' => config('app.resume.location.zip'),
             'github' => sprintf('https://github.com/%s', config('app.github.username'))
         ]);
-        $resume->cover_letter(\App\CoverLetter::first()->content);
+        $resume->cover_letter($coverLetter->body);
         $resume->contact();
-        $resume->skills(Skill::all()->pluck('name')->toArray());
-        $resume->jobs(ResumeJob::orderBy('end_date', 'DESC')->get()->toArray());
-        $resume->education(\App\Education::all()->toArray());
+
+        $languages = Language::pluck('name')->toArray();
+        $frameworks = Framework::pluck('name')->toArray();
+        $applications = Application::pluck('name')->toArray();
+        $servers = Server::pluck('name')->toArray();
+
+        $skills = array_merge($languages, $frameworks, $applications, $servers);
+        $resume->skills($skills);
+        $resume->jobs(Experience::orderBy('end_date', 'DESC')->get()->toArray());
+        $resume->education(Diploma::all()->toArray());
         $resume->show();
         exit();
     }

@@ -7,17 +7,13 @@ use Kyslik\ColumnSortable\Sortable;
 
 class Project extends Model
 {
+    //
     use Sortable;
     protected $fillable = [
-        'name', 'description', 'url', 'homepage', 'github_id'
+        'github_id',
+        'name',
+        'description',
+        'url',
+        'demo'
     ];
-    protected $sortable = [
-        'name', 'description', 'url', 'homepage', 'github_id'
-    ];
-
-    public function languages()
-    {
-        return $this->belongsToMany('App\Language')
-            ->withTimestamps();
-    }
 }

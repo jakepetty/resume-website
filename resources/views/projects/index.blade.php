@@ -5,20 +5,16 @@
         <table class="table table-borderless table-hover">
             <thead class="thead-dark">
             <tr>
+                <th></th>
                 <th>@sortablelink('name', 'Project Name')</th>
-                <th>Languages</th>
                 <th class="text-right">Actions</th>
             </tr>
             </thead>
             <tbody>
             @foreach ($projects as $project)
                 <tr>
+                    <td><img src="/images/projects/{{ $project->github_id ? $project->github_id : $project->id }}.jpg" width=50 /></td>
                     <td>{{ $project->name }}</td>
-                    <td>
-                        @foreach($project->languages as $language)
-                            <span class="badge badge-primary">{{ $language->name }}</span>
-                        @endforeach
-                    </td>
                     <td>
                         <form class="form-inline float-right" action="{{ route('projects.destroy', $project->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this project?')">
                             @csrf @method('DELETE')
@@ -35,5 +31,6 @@
         </table>
         {{ $projects->appends(\Request::except('page'))->links() }}
         <a href="{{ route('projects.import') }}" class="btn btn-outline-dark"><i class="fab fa-github"></i> Import from GitHub</a>
+        <a href="{{ route('projects.create') }}" class="btn btn-outline-dark"><i class="fas fa-plus"></i> Add</a>
     </section>
 @endsection
