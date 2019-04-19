@@ -6,6 +6,15 @@
 @import "variables";
 
 #backend {
+  .breadcrumb {
+    background-color: $accent-light;
+    a {
+      font-weight: 600;
+    }
+  }
+  label {
+    font-weight: bold;
+  }
   padding-top: 100px;
   .navbar-brand {
     font-weight: bold;

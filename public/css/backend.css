@@ -16423,6 +16423,18 @@ readers do not read off random characters that represent icons */
   padding-top: 100px;
 }
 
+#backend .breadcrumb {
+  background-color: #f5f9ff;
+}
+
+#backend .breadcrumb a {
+  font-weight: 600;
+}
+
+#backend label {
+  font-weight: bold;
+}
+
 #backend .navbar-brand {
   font-weight: bold;
   font-size: 1.5rem;

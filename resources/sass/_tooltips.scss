@@ -1,0 +1,15 @@
+.tooltip-inner {
+    background-color: $accent-color;
+}
+.tooltip.bs-tooltip-right .arrow:before {
+    border-right-color: $accent-color;
+}
+.tooltip.bs-tooltip-left .arrow:before {
+    border-left-color: $accent-color;
+}
+.tooltip.bs-tooltip-bottom .arrow:before {
+    border-bottom-color: $accent-color;
+}
+.tooltip.bs-tooltip-top .arrow:before {
+    border-top-color: $accent-color;
+}
