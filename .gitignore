@@ -11,7 +11,6 @@ npm-debug.log
 yarn-error.log
 .vscode/
 .idea/
-public/fonts/*
 public/images/projects/*
 public/images/portrait2.jpg
 public/images/portrait3.jpg
