@@ -111,7 +111,7 @@
 <section id="projects" class="container">
     <div class="heading">
         <h2><span>{{ __('Work') }}</span>{{ __('Portfolio') }}</h2>
-        <p class="lead">{{ __('A small collection of my work over the years') }}</p>
+        <p class="lead">{{ __("A small collection of projects I've worked on") }}</p>
     </div>
     <div class="row">
         @foreach($projects as $project)
@@ -168,5 +168,5 @@
         <button class="btn btn-outline-dark"><i class="fas fa-paper-plane"></i> {{ __('Send') }}</button>
     </form>
 </section>
-<footer> &copy; {{date('Y')}} {{ config('app.name') }}. {{ __('All Rights Reserved.') }}</footer>
+<footer> &copy; {{ date('Y') }} {{ config('app.name') }}. {{ __('All Rights Reserved.') }}</footer>
 @endsection
