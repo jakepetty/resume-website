@@ -3,11 +3,51 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~@fortawesome/fontawesome-free/css/all";
 @import "~animate.css/animate.min.css";
-.navbar-dark {
-  background: #000;
-}
-.dropdown-item {
-  i {
-    width: 30px;
+@import "variables";
+
+#backend {
+  padding-top: 100px;
+  .navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  .navbar-light {
+    background: #fff;
+    padding: 20px 0;
+    border-bottom: 5px solid $accent-color;
+    box-shadow: 0 1px 9px rgba($accent-dark, 0.5);
+
+    .dropdown-item {
+      i {
+        width: 30px;
+        text-align: center;
+      }
+    }
+    .nav-item {
+      .nav-link {
+        color: #000;
+      }
+    }
+  }
+  .card {
+    border: none;
+    .card-img-top {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 260px;
+    }
+    @include media-breakpoint-down(sm) {
+      padding: 20px;
+      .card-img-top {
+        height: 300px;
+      }
+    }
+    .card-title {
+      margin-top: -25px;
+    }
+  }
+  thead {
+    border-bottom: 5px solid $accent-color;
   }
 }

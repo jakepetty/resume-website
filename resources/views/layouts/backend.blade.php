@@ -8,22 +8,16 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Administration - {{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
     <!-- Styles -->
     <link href="{{ asset('css/backend.css') }}" rel="stylesheet">
 </head>
 
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark">
+    <div id="backend">
+        <nav class="navbar fixed-top navbar-expand-md navbar-light">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Résumé <small>Administration</small>
@@ -52,7 +46,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
-                            Skills
+                            <i class="fas fa-drafting-compass"></i> Skills
                           </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('projects.index') }}"><i class="fas fa-layer-group"></i> {{ __('Projects') }}</a>
@@ -65,7 +59,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
-                            Resume
+                                <i class="fas fa-file-pdf"></i> Resume
                           </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('experiences.index') }}"><i class="fas fa-briefcase"></i> {{ __('Experiences') }}</a>
@@ -74,12 +68,9 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/resume"><i class="fas fa-file-pdf"></i> {{ __('Print Resume') }}</a>
-                        </li>
-                        <li class="nav-item">
                             <form id="logout-form" class="form-inline" action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button class="btn btn-outline-light"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                                <button class="btn btn-outline-dark"><i class="fas fa-sign-out-alt"></i> Logout</button>
                             </form>
                         </li>
                         @endguest
@@ -91,6 +82,8 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
         @yield('scripts')
     </div>
 </body>

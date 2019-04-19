@@ -17,6 +17,7 @@ class CreateApplicationsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('url')->nullable();
+            $table->integer('order')->unsigned()->default(0);
             $table->timestamps();
         });
     }

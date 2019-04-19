@@ -15,8 +15,7 @@ class FrameworkController extends Controller
     public function index()
     {
         //
-        $frameworks = Framework::sortable()->paginate(15);
-
+        $frameworks = Framework::orderBy('order', 'ASC')->get();
         return view('frameworks.index', compact('frameworks'));
     }
 
@@ -94,5 +93,16 @@ class FrameworkController extends Controller
         $framework->delete();
 
         return back();
+    }
+
+    public function reorder(Request $request)
+    {
+        foreach ($request->order as $order) {
+            $framework = Framework::where('id', $order['id'])->first();
+            $framework->order = $order['position'];
+            $framework->update();
+        }
+
+        return response(['status' => 200], 200);
     }
 }

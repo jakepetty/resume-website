@@ -15,7 +15,7 @@ class ApplicationController extends Controller
     public function index()
     {
         //
-        $applications = Application::sortable()->paginate(15);
+        $applications = Application::orderBy('order', 'ASC')->get();
 
         return view('applications.index', compact('applications'));
     }
@@ -94,5 +94,16 @@ class ApplicationController extends Controller
         //
         $application->delete();
         return back();
+    }
+
+    public function reorder(Request $request)
+    {
+        foreach ($request->order as $order) {
+            $application = Application::where('id', $order['id'])->first();
+            $application->order = $order['position'];
+            $application->update();
+        }
+
+        return response(['status' => 200], 200);
     }
 }

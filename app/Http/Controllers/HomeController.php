@@ -19,10 +19,10 @@ class HomeController extends Controller
     public function index()
     {
         $projects = Project::orderBy('order', 'ASC')->get();
-        $languages = Language::all();
-        $frameworks = Framework::all();
-        $applications = Application::all();
-        $servers = Server::all();
+        $languages = Language::orderBy('order', 'ASC')->get();
+        $frameworks = Framework::orderBy('order', 'ASC')->get();
+        $applications = Application::orderBy('order', 'ASC')->get();
+        $servers = Server::orderBy('order', 'ASC')->get();
         return view('home.index', compact('projects', 'languages', 'frameworks', 'applications', 'servers'));
     }
 }

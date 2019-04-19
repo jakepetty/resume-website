@@ -15,7 +15,7 @@ class ServerController extends Controller
     public function index()
     {
         //
-        $servers = Server::sortable()->paginate(15);
+        $servers = Server::orderBy('order', 'ASC')->get();
 
         return view('servers.index', compact('servers'));
     }
@@ -94,5 +94,16 @@ class ServerController extends Controller
         $server->delete();
 
         return back();
+    }
+
+    public function reorder(Request $request)
+    {
+        foreach ($request->order as $order) {
+            $server = Server::where('id', $order['id'])->first();
+            $server->order = $order['position'];
+            $server->update();
+        }
+
+        return response(['status' => 200], 200);
     }
 }

@@ -61,7 +61,7 @@ class ResumeClass extends FPDF
     {
         $this->Ln($this->section_spacing);
         $this->SetFont($this->font, 'B', $this->header_size);
-        $this->Cell(0, 0, 'WORK EXPERIENCE', 0, 0, 'C');
+        $this->Cell(0, 0, 'EXPERIENCE', 0, 0, 'C');
         $this->Ln($this->header_spacing);
 
         $this->SetFont($this->font, '', $this->font_size);
@@ -116,7 +116,7 @@ class ResumeClass extends FPDF
     {
         $this->Ln($this->section_spacing);
         $this->SetFont($this->font, 'B', $this->header_size);
-        $this->Cell(0, 0, 'SKILLS / EQUIPMENT', 0, 0, 'C');
+        $this->Cell(0, 0, 'SKILLS', 0, 0, 'C');
         $this->Ln($this->header_spacing);
 
         $this->SetFont($this->font, '', $this->font_size);

@@ -10,6 +10,7 @@ class Language extends Model
     //
     use Sortable;
     protected $fillable = [
-        'name'
+        'name',
+        'order'
     ];
 }

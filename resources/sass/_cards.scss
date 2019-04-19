@@ -42,9 +42,23 @@
     .card-header {
       background-color: $accent-dark;
       color: #fff;
-      border-bottom:5px solid $accent-color;
+      border-bottom: 5px solid $accent-color;
       text-align: center;
       font-weight: 600;
+    }
+  }
+}
+
+#login {
+  .card {
+    border-radius: 15px;
+    background-color: rgba($accent-dark, 0.5);
+    .card-header {
+      font-size: 3em;
+    }
+    .invalid-feedback {
+      color: complement($accent-color);
+      text-align: center;
     }
   }
 }

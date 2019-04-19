@@ -1,17 +1,20 @@
 @extends('layouts.backend')
 @section('content')
 <section class="container">
-    <h2>Application Management</h2>
-    <table class="table table-borderless table-hover">
+    <div class="btn-group float-right">
+        <a href="{{ route('applications.create') }}" class="btn btn-outline-dark"><i class="fas fa-plus"></i> New Application</a>
+    </div>
+    <h2 class="mb-4">Application Management</h2>
+    <table class="table table-borderless table-hover ui-sortable" data-url="{{ route('applications.reorder') }}">
         <thead class="thead-dark">
             <tr>
-                <th>@sortablelink('name', 'application')</th>
+                <th>Application</th>
                 <th class="text-right">Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach($applications as $application)
-            <tr>
+            <tr class="sortable" data-id="{{ $application->id }}">
                 <td>{{ $application->name }}</td>
                 <td>
                     <form class="form-inline float-right" action="{{ route('applications.destroy', $application->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this application?')">
@@ -26,7 +29,5 @@
             @endforeach
         </tbody>
     </table>
-    {{ $applications->appends(\Request::except('page'))->links() }}
-    <a href="{{ route('applications.create') }}" class="btn btn-outline-dark"><i class="fas fa-plus"></i> Add</a>
 </section>
 @endsection

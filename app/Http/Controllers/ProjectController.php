@@ -17,7 +17,7 @@ class ProjectController extends Controller
     public function index()
     {
         //
-        $projects = Project::sortable()->orderBy('order', 'ASC')->paginate(15);
+        $projects = Project::orderBy('order', 'ASC')->get();
 
         return view('projects.index', compact('projects'));
     }
@@ -107,7 +107,10 @@ class ProjectController extends Controller
     {
         //
         if ($project->delete()) {
-            unlink(public_path('images/projects/') . ($project->github_id ? $project->github_id : $project->id) . '.jpg');
+            $file = public_path('images/projects/') . ($project->github_id ? $project->github_id : $project->id) . '.jpg';
+            if (file_exists($file)) {
+                unlink($file);
+            }
         }
         return back();
     }
@@ -121,7 +124,7 @@ class ProjectController extends Controller
             $project->update();
         }
 
-        return response('Update Successfully.', 200);
+        return response(['status' => 200], 200);
     }
     /**
      * Pulls new repos from github.

@@ -11,6 +11,7 @@ class Framework extends Model
     use Sortable;
     protected $fillable = [
         'name',
-        'url'
+        'url',
+        'order'
     ];
 }

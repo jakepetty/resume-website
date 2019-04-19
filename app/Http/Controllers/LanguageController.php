@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Language;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
 
 class LanguageController extends Controller
 {
@@ -15,7 +16,7 @@ class LanguageController extends Controller
     public function index()
     {
         //
-        $languages = Language::sortable()->paginate(15);
+        $languages = Language::orderBy('order', 'ASC')->get();
 
         return view('languages.index', compact('languages'));
     }
@@ -92,5 +93,16 @@ class LanguageController extends Controller
         $language->delete();
 
         return back();
+    }
+
+    public function reorder(Request $request)
+    {
+        foreach ($request->order as $order) {
+            $language = Language::where('id', $order['id'])->first();
+            $language->order = $order['position'];
+            $language->update();
+        }
+
+        return response(['status' => 200], 200);
     }
 }

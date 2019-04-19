@@ -17,7 +17,13 @@ Auth::routes();
 
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/projects/import', 'ProjectController@import')->name('projects.import');
+
     Route::post('/projects/reorder','ProjectController@reorder')->name('projects.reorder');
+    Route::post('/languages/reorder','LanguageController@reorder')->name('languages.reorder');
+    Route::post('/servers/reorder','ServerController@reorder')->name('servers.reorder');
+    Route::post('/frameworks/reorder','FrameworkController@reorder')->name('frameworks.reorder');
+    Route::post('/applications/reorder','ApplicationController@reorder')->name('applications.reorder');
+
     Route::resource('/dashboard', 'DashboardController');
     Route::resource('/applications', 'ApplicationController');
     Route::resource('/languages', 'LanguageController');
