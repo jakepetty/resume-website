@@ -1,6 +1,12 @@
 @extends('layouts.backend')
 @section('content')
 <section class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">{{ __('Dashboard') }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ __('Servers') }}</li>
+        </ol>
+    </nav>
     <div class="btn-group float-right">
         <a href="{{ route('servers.create') }}" class="btn btn-outline-dark"><i class="fas fa-plus"></i> {{ __('New Server') }}</a>
     </div>
