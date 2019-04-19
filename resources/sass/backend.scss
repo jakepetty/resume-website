@@ -58,5 +58,10 @@
   }
   thead {
     border-bottom: 5px solid $accent-color;
+    th{
+      a {
+        color: #fff;
+      }
+    }
   }
 }

@@ -16485,3 +16485,7 @@ readers do not read off random characters that represent icons */
   border-bottom: 5px solid #06f;
 }
 
+#backend thead th a {
+  color: #fff;
+}
+
