@@ -11,7 +11,7 @@ class ResumeClass extends FPDF
     private $header_size = 16;
     private $font_size = 11;
     private $header_spacing = 8;
-    private $section_spacing = 8;
+    private $section_spacing = 7;
     private $contact_info = [];
     public function __construct()
     {
