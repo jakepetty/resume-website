@@ -168,5 +168,5 @@
         <button class="btn btn-outline-dark"><i class="fas fa-paper-plane"></i> {{ __('Send') }}</button>
     </form>
 </section>
-<footer> &copy; {{date('Y')}} {{env('APP_NAME')}}. {{ __('All Rights Reserved.') }}</footer>
+<footer> &copy; {{date('Y')}} {{ config('app.name') }}. {{ __('All Rights Reserved.') }}</footer>
 @endsection
