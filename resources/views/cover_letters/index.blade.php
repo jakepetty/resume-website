@@ -15,6 +15,7 @@
         <thead class="thead-dark">
             <tr>
                 <th>@sortablelink('name', 'Company')</th>
+                <th>@sortablelink('updated_at', 'Modified')</th>
                 <th class="text-right">{{ __('Actions') }}</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
             @foreach($coverLetters as $coverLetter)
             <tr>
                 <td>{{ $coverLetter->name }}</td>
+                <td>{{ $coverLetter->updated_at->format('F, jS Y') }}</td>
                 <td>
                     <form class="form-inline float-right" action="{{ route('cover_letters.destroy', $coverLetter->id) }}" method="POST" onsubmit="return confirm('{{ __('Are you sure you want to delete this cover letter?') }}')">
                         @csrf @method('DELETE')
