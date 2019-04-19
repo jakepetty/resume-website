@@ -51,7 +51,7 @@
                     @auth
                     <a class="manage" href="{{ route('languages.index') }}" data-toggle="tooltip" data-placement="top" title="{{ __('Manage') }}"><i class="fas fa-edit"></i></a>
                     @endauth
-                    <i class="icon fas fa-code"></i> {{ __('Languages') }}}}
+                    <i class="icon fas fa-code"></i> {{ __('Languages') }}
                 </div>
                 <ul class="list-group list-group-flush">
                     @foreach($languages as $language)
