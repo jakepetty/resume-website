@@ -31,10 +31,10 @@ class ResumeController extends Controller
         $resume->cover_letter($coverLetter->body);
         $resume->contact();
 
-        $languages = Language::pluck('name')->toArray();
-        $frameworks = Framework::pluck('name')->toArray();
-        $applications = Application::pluck('name')->toArray();
-        $servers = Server::pluck('name')->toArray();
+        $languages = Language::orderBy('order', 'ASC')->pluck('name')->toArray();
+        $frameworks = Framework::orderBy('order', 'ASC')->pluck('name')->toArray();
+        $applications = Application::orderBy('order', 'ASC')->pluck('name')->toArray();
+        $servers = Server::orderBy('order', 'ASC')->pluck('name')->toArray();
 
         $skills = array_merge($languages, $frameworks, $applications, $servers);
         $resume->skills($skills);
