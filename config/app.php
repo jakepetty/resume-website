@@ -16,6 +16,12 @@ return [
             'zip' => env('RESUME_LOCATION_ZIP', '10108')
         ]
     ],
+    'cloudflare' => [
+        'enabled' => env('CLOUDFLARE_ENABLED', false),
+        'email' => env('CLOUDFLARE_EMAIL', ''),
+        'zone' => env('CLOUDFLARE_ZONE', ''),
+        'key' => env('CLOUDFLARE_KEY', '')
+    ],
     /*
     |--------------------------------------------------------------------------
     | Application Name

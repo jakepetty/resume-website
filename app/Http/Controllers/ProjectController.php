@@ -6,6 +6,7 @@ use App\Project;
 use Illuminate\Http\Request;
 use App\Classes\GithubClass;
 use Image;
+use App\Classes\CloudflareClass;
 
 class ProjectController extends Controller
 {
@@ -91,7 +92,14 @@ class ProjectController extends Controller
         $project->update($data);
 
         if ($request->image) {
-            Image::make($request->image->getPathname())->fit(535, 535)->save(public_path('images/projects/') . ($project->github_id ? $project->github_id : $project->id)  . '.jpg', 100);
+            $filename = ($project->github_id ? $project->github_id : $project->id);
+            Image::make($request->image->getPathname())->fit(535, 535)->save(public_path(sprintf('images/projects/%s.jpg', $filename)), 100);
+            if (config('app.cloudflare.enabled')) {
+                $cloudflare = new CloudflareClass();
+                $cloudflare->purge([
+                    url(sprintf('imaages/projects/%s.jpg', $filename))
+                ]);
+            }
         }
 
         return redirect(route('projects.index'));
@@ -107,9 +115,18 @@ class ProjectController extends Controller
     {
         //
         if ($project->delete()) {
-            $file = public_path('images/projects/') . ($project->github_id ? $project->github_id : $project->id) . '.jpg';
+            $filename = ($project->github_id ? $project->github_id : $project->id);
+            $file = public_path(sprintf('images/projects/%s.jpg', $filename));
             if (file_exists($file)) {
                 unlink($file);
+                if (config('app.cloudflare.email')) {
+                    if (config('app.cloudflare.enabled')) {
+                        $cloudflare = new CloudflareClass();
+                        $cloudflare->purge([
+                            url(sprintf('imaages/projects/%s.jpg', $filename))
+                        ]);
+                    }
+                }
             }
         }
         return back();
