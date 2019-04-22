@@ -18,7 +18,7 @@ class ContactController extends Controller
         $job = (new SendEmailJob($data));
         dispatch($job);
 
-        \Session::flash('message', 'Your message has been sent. Please allow 24-48 hours for a reply. Have a wonderful day!');
+        \Session::flash('message', __('Your message has been sent. Please allow 24-48 hours for a reply. Have a wonderful day!'));
         \Session::flash('name', $data['name']);
 
         return back();
