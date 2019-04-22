@@ -1,0 +1,14 @@
+.modal {
+  .modal-content {
+    background-color: $accent-color;
+    color: $accent-light;
+    .modal-header,
+    .modal-footer {
+      border: none;
+    }
+  }
+  .btn-dark {
+    color: $accent-light;
+    background-color: $accent-dark;
+  }
+}

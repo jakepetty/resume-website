@@ -1,13 +1,14 @@
 'use strict'
-require('./bootstrap');
+require('./bootstrap')
 class App {
     constructor() {
+        $('.modal').modal('show')
         this.particles()
         $('[data-toggle="tooltip"]').tooltip()
         $(document).click((e) => {
             $('.navbar-collapse').collapse('hide')
         })
-        this.sortProjects();
+        this.sortProjects()
     }
     sortProjects() {
         $(".ui-sortable").sortable({
@@ -16,18 +17,18 @@ class App {
             opacity: 0.6,
             helper: function (e, ui) {
                 ui.children().each(function () {
-                    $(this).width($(this).width());
-                });
-                return ui;
+                    $(this).width($(this).width())
+                })
+                return ui
             },
             update: function (event, ui) {
-                var order = [];
+                var order = []
                 $('.sortable').each(function (index, element) {
                     order.push({
                         id: $(this).attr('data-id'),
                         position: index + 1
-                    });
-                }).removeAttr('style');
+                    })
+                }).removeAttr('style')
 
                 $.ajax({
                     type: "POST",
@@ -39,14 +40,14 @@ class App {
                     },
                     success: function (response) {
                         if (response.status == "success") {
-                            console.log(response);
+                            console.log(response)
                         } else {
-                            console.log(response);
+                            console.log(response)
                         }
                     }
-                });
+                })
             }
-        });
+        })
 
     }
     particles() {

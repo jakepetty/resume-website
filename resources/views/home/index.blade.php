@@ -169,4 +169,21 @@
     </form>
 </section>
 <footer> &copy; {{ date('Y') }} {{ config('app.name') }}. {{ __('All Rights Reserved.') }}</footer>
+@if(Session::has('message'))
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thank you {{ Session::get('name') }}!</h5>
+            </div>
+            <div class="modal-body">
+                <p>{{ Session::get('message') }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 @endsection
