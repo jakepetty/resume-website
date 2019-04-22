@@ -143,7 +143,7 @@
             <h2><span>{{ __('Say') }}</span>{{  __('Hello') }}</h2>
             <p class="lead">{{ __('Have questions or want to hire me? Send me a message!') }}</p>
         </div>
-        <form action="{{ route('contact.send') }}" method="POST">
+        <form action="{{ route('contact.send') }}" class="pt-4" method="POST">
             @csrf
             <div class="form-row">
                 <div class="form-group col-md-6">
