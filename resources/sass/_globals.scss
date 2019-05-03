@@ -1,24 +1,29 @@
 html,
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Comfortaa", sans-serif;
   height: 100%;
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
   cursor: default;
 }
 ::-webkit-scrollbar {
-  display: none; // Safari and Chrome
+  display: none;
 }
+
 html {
   scroll-behavior: smooth;
   overflow: scroll;
   overflow-x: hidden;
-  -ms-overflow-style: none; // IE 10+
-  scrollbar-width: none; // Firefox
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 body {
   margin: 0;
 }
 h3 {
   font-weight: 600;
+  padding-bottom: 10px;
 }
 
 canvas {
@@ -28,4 +33,17 @@ canvas {
   right: 0;
   bottom: 0;
   z-index: 0;
+}
+
+.middle {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+section {
+  position: relative;
+  padding: 50px 0;
 }

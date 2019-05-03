@@ -1,0 +1,23 @@
+#contact {
+  background-color: desaturate(lighten($accent-dark, 5%), 25%);
+  box-shadow: -4px 0 8px rgba($accent-dark, 0.5);
+  color: $accent-light;
+  header {
+    h1,
+    p {
+      color: $accent-light;
+    }
+  }
+  .form-control {
+    background-color: desaturate(lighten($accent-dark, 15%), 25%);
+    color: $accent-light;
+    border-color: transparent;
+    box-shadow: 0 0 5px desaturate(lighten($accent-dark, 5%), 25%) inset;
+  }
+  ::placeholder {
+    color: darken($accent-light, 25%);
+  }
+  .btn {
+    color: $accent-light;
+  }
+}

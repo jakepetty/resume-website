@@ -3,29 +3,57 @@ require('./bootstrap')
 class App {
     constructor() {
         $('.modal').modal('show')
-        this.particles()
         $('[data-toggle="tooltip"]').tooltip()
         $(document).click((e) => {
             $('.navbar-collapse').collapse('hide')
         })
+        this.particles()
         this.sortProjects()
+        this.animatePills()
+        this.autoResizeTextareas()
+        $('nav a[href^="#"]').on('click', (e) => {
+            e.preventDefault()
+            let el = $(e.currentTarget)
+            let target = $(el.attr('href'))
+            $('html, body').stop().animate({
+                'scrollTop': target.offset().top - 61
+            }, 0)
+        })
+    }
+    animatePills() {
+        $('.pill').on('mouseover', (e) => {
+            let el = $(e.currentTarget)
+            let animaton = 'rubberBand'
+            el[0].addEventListener('animationend', () => {
+                el.removeClass(animaton)
+            })
+            el.addClass('animated ' + animaton)
+        })
+    }
+    autoResizeTextareas() {
+        let elements = document.querySelectorAll('textarea')
+        elements.forEach((element) => {
+            element.addEventListener('keypress', function () {
+                element.style.height = 'auto'
+                element.style.height = element.scrollHeight + 5 + 'px'
+            })
+            element.style.height = 'auto'
+            element.style.height = element.scrollHeight + 5 + 'px'
+        })
     }
     sortProjects() {
         $(".ui-sortable").sortable({
             items: '.sortable',
             cursor: 'move',
             opacity: 0.6,
-            helper: function (e, ui) {
-                ui.children().each(function () {
-                    $(this).width($(this).width())
-                })
+            helper: (e, ui) => {
                 return ui
             },
-            update: function (event, ui) {
-                var order = []
-                $('.sortable').each(function (index, element) {
+            update: (event, ui) => {
+                let order = []
+                $('.sortable').each((index, element) => {
                     order.push({
-                        id: $(this).attr('data-id'),
+                        id: $(element).attr('data-id'),
                         position: index + 1
                     })
                 }).removeAttr('style')
@@ -38,17 +66,12 @@ class App {
                         order: order,
                         _token: $('meta[name="csrf-token"]').attr('content')
                     },
-                    success: function (response) {
-                        if (response.status == "success") {
-                            console.log(response)
-                        } else {
-                            console.log(response)
-                        }
+                    success: (response) => {
+                        console.log(response)
                     }
                 })
             }
         })
-
     }
     particles() {
         let _self = this
@@ -56,7 +79,7 @@ class App {
             particlesJS.load('intro', '/particles.json', () => {
                 let nav = $('.navbar')
                 let win = $(window)
-                let header = $('header')
+                let header = $('#intro')
                 _self.stickyNav(nav, win)
                 _self.typingAnimation()
                 win.scroll((e) => {

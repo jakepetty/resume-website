@@ -1,48 +1,20 @@
-.btn-group {
-  margin-top: -15px;
-  box-shadow: 0 1px 6px $accent-dark;
-  .btn {
-    &.btn-red {
-      color: #fff;
-      box-shadow: 0 1px 6px $accent-dark;
-      font-weight: 600;
-      border: none;
-      background: #fa807c;
-    }
-
-    &.btn-red:hover {
-      background-color: #fb9390;
-    }
-    &.btn-blue {
-      color: #fff;
-      font-weight: 600;
-      border: none;
-      background: $accent-color;
-    }
-    &.btn-blue:first-child {
-      border-right: 2px solid darken($accent-color, 5);
-    }
-    &.btn-blue:last-child {
-      border-left: 1px solid lighten($accent-color, 5);
-    }
-
-    &.btn-blue:hover {
-      background-color: lighten($accent-color, 5);
-    }
-    &.btn-blue:active {
-      background-color: darken($accent-color, 5);
-    }
-  }
-}
-
-.btn-outline-dark {
-  &:hover {
+.btn {
+  &.btn-outline-dark {
     border-color: $accent-color;
-    box-shadow: 0 0 5px $accent-color;
-    background-color: $accent-color;
-  }
-  &:active {
-    background-color: darken($accent-color, 5)!important;
-    border-color: darken($accent-color, 5)!important;
+    border-width: 2px;
+    color: $accent-color;
+    border-radius: 3em;
+    padding: 0.5em 2em;
+    &:hover {
+      color: $accent-light;
+      background-color: $accent-color;
+    }
+    &:active {
+      background-color: darken($accent-color, 5%) !important;
+      border-color: darken($accent-color, 5%) !important;
+    }
+    &:focus {
+      box-shadow: none !important;
+    }
   }
 }

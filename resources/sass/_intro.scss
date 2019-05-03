@@ -1,23 +1,21 @@
 #intro {
-  color: #fff;
+  padding: 0;
+  color: $accent-light;
   height: 100%;
   background-color: $accent-dark;
-  background-image: url("/images/background.jpg");
+  background-image: url("/img/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: top center;
-  .bg {
+  .middle {
     background: rgba($accent-dark, 0.75);
     height: 100%;
-    .container {
-      position: relative;
-      z-index: 1;
-      font-family: "Comfortaa", sans-serif;
-      #name {
+    header {
+      h1 {
         font-size: 5em;
       }
-      #sub-text {
+      p {
         margin-top: 30px;
         font-size: 2em;
       }
@@ -25,7 +23,7 @@
   }
 }
 #login {
-    #intro {
-        background-image: url('/images/login.jpg')
-    }
+  #intro {
+    background-image: url("/img/login.jpg");
+  }
 }

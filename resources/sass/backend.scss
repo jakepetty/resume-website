@@ -40,12 +40,6 @@
   }
   .card {
     border: none;
-    .card-img-top {
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      height: 260px;
-    }
     @include media-breakpoint-down(sm) {
       padding: 20px;
       .card-img-top {

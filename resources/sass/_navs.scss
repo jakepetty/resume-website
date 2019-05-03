@@ -5,7 +5,7 @@
   width: 100%;
   z-index: 1000;
   border-top: 5px solid $accent-color;
-  font-size: 14px;
+  font-size: 16px;
   box-shadow: 0 8px 8px -4px rgba($accent-dark, 0.5);
 
   @include media-breakpoint-down(md) {
@@ -16,26 +16,55 @@
   }
   &.navbar-night {
     background-color: $accent-dark;
-    a {
-      color: #ddd;
-    }
   }
   .navbar-toggler {
     outline: none;
-    color: #fff;
-    .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    color: $accent-light;
+    border: none;
+    background: transparent !important;
+
+    .icon-bar {
+      width: 22px;
+      height: 2px;
+      background-color: $accent-light;
+      display: block;
+      transition: all 0.2s;
+      margin-top: 4px;
+    }
+    .top-bar {
+      transform: rotate(45deg);
+      transform-origin: 10% 10%;
+    }
+    .middle-bar {
+      opacity: 0;
+    }
+    .bottom-bar {
+      transform: rotate(-45deg);
+      transform-origin: 10% 90%;
+    }
+    &.collapsed {
+      .top-bar {
+        transform: rotate(0);
+      }
+      .middle-bar {
+        opacity: 1;
+      }
+      .bottom-bar {
+        transform: rotate(0);
+      }
     }
   }
   .nav-link {
+    color: lighten($accent-color, 30%);
     transition: 0.25s;
     min-width: 150px;
+    font-weight: 600;
     &.active {
       font-weight: 600;
-      color: #fff;
+      color: $accent-light;
     }
     &:hover {
-      color: #fff;
+      color: $accent-light;
     }
   }
   &.fixed-top {
@@ -44,8 +73,8 @@
     border-top: none;
     border-bottom: 5px solid $accent-color;
   }
-  .fas,
-  .fab {
+  i {
     width: 20px;
+    color: lighten($accent-color, 30%);
   }
 }

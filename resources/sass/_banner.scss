@@ -1,0 +1,25 @@
+.banner {
+  background: $accent-dark;
+  color: $accent-light;
+  padding: 20px;
+  box-shadow: 0 10px 0 $accent-color;
+
+  border-radius: 50px;
+  h4 {
+    margin: 0;
+    text-align: left;
+  }
+  .middle {
+    &:first-child {
+      justify-content: left;
+    }
+  }
+  .col {
+    &:last-child {
+      text-align: right;
+    }
+  }
+  .btn {
+    color: $accent-light;
+  }
+}

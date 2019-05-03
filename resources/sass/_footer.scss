@@ -1,4 +1,27 @@
 footer {
   padding: 20px;
-  text-align: center;
+  background-color: $accent-color;
+  color: $accent-light;
+  img {
+    margin-right: 10px;
+  }
+  .middle {
+    text-align: left;
+    justify-content: left;
+    .author {
+      display: inline-block;
+      font-size: 0.9em;
+      color: rgba($accent-light, 0.75);
+      i {
+        font-weight: bold;
+        color: $accent-light;
+      }
+      a {
+        color: rgba($accent-light, 1);
+        &:hover {
+          color: $accent-light;
+        }
+      }
+    }
+  }
 }

@@ -7,15 +7,30 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name') }}</title>
+    <title>{{ config('app.name') }} | Full-Stack Web Developer</title>
+
+    <meta name="author" content="{{ config('app.name') }}">
+    <meta name="description" content="Full-Stack Web Developer &amp; Mentor">
+    <link rel="canonical" href="{{ config('app.name') }}">
+    <meta property="og:title" content="{{ config('app.name') }}">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:description" content="Designer, Front-end Developer &amp; Mentor">
+    <meta property="og:url" content="{{ config('app.url') }}">
+    <meta property="og:site_name" content="{{ config('app.name') }}">
+    <meta property="og:image" content="{{ config('app.url') }}/img/og_thumbnail.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:title" content="{{ config('app.name') }}">
+    <meta name="twitter:description" content="Full-Stack Web Developer &amp; Mentor. I design and code beautifully simple things, and I love what I do.">
+    <meta name="twitter:image" content="{{ config('app.url') }}/img/og_thumbnail.png">
+    <meta name="twitter:image:alt" content="{{ config('app.name') }}">
+
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 
-<body data-spy="scroll" data-target=".navbar" data-offset="50">
-    <main id="app" class="h-100">
-        @yield('content')
-    </main>
+<body data-spy="scroll" data-target=".navbar" data-offset="100">
+    @yield('content')
     <script src="{{ mix('js/app.js') }}"></script>
     @yield('scripts')
 </body>

@@ -1,5 +1,13 @@
 #skills {
-  h3 {
-    margin: 50px 0;
+  background-color: $accent-color;
+  header {
+    h1,
+    p {
+      color: #fff;
+    }
+  }
+  .pill {
+    border-color: $accent-light;
+    color: $accent-light;
   }
 }

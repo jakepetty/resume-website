@@ -3,12 +3,7 @@
     text-align: center;
     border: none;
     margin-bottom: 20px;
-    .card-img-top {
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      height: 260px;
-    }
+
     @include media-breakpoint-down(sm) {
       padding: 20px;
       .card-img-top {
@@ -39,7 +34,7 @@
     overflow: hidden;
     border-radius: 10px;
     border: none;
-    box-shadow: 0 0 10px #eee;
+    box-shadow: 0 0 10px rgba($accent-dark, 0.05);
     .card-header {
       background-color: $accent-dark;
       color: #fff;
