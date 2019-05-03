@@ -53,7 +53,7 @@ class ProjectController extends Controller
 
         $project = Project::create($data);
         if ($request->image) {
-            Image::make($request->image->getPathname())->fit(535, 535)->save(public_path('images/projects/') . $project->id . '.jpg', 100);
+            Image::make($request->image->getPathname())->fit(535, 315)->save(public_path('img/projects/') . $project->id . '.jpg', 100);
         }
 
         return redirect(route('projects.index'));
@@ -93,7 +93,7 @@ class ProjectController extends Controller
 
         if ($request->image) {
             $filename = ($project->github_id ? $project->github_id : $project->id);
-            Image::make($request->image->getPathname())->fit(535, 535)->save(public_path(sprintf('images/projects/%s.jpg', $filename)), 100);
+            Image::make($request->image->getPathname())->fit(535, 315)->save(public_path(sprintf('img/projects/%s.%s', $filename, $request->image->getClientOriginalExtension())), 100);
             if (config('app.cloudflare.enabled')) {
                 $cloudflare = new CloudflareClass();
                 $cloudflare->purge([
@@ -116,14 +116,14 @@ class ProjectController extends Controller
         //
         if ($project->delete()) {
             $filename = ($project->github_id ? $project->github_id : $project->id);
-            $file = public_path(sprintf('images/projects/%s.jpg', $filename));
+            $file = public_path(sprintf('img/projects/%s.jpg', $filename));
             if (file_exists($file)) {
                 unlink($file);
                 if (config('app.cloudflare.email')) {
                     if (config('app.cloudflare.enabled')) {
                         $cloudflare = new CloudflareClass();
                         $cloudflare->purge([
-                            url(sprintf('imaages/projects/%s.jpg', $filename))
+                            url(sprintf('img/projects/%s.jpg', $filename))
                         ]);
                     }
                 }
@@ -165,6 +165,7 @@ class ProjectController extends Controller
             $name = str_replace('Vb.net', 'VB.net', $name);
             $name = str_replace('Iss', 'ISS', $name);
             $name = str_replace('Hvac', 'HVAC', $name);
+            $name = str_replace('Mvc', 'MVC', $name);
 
             // Check to see if the project already exists
             $exists = Project::where('github_id', $repo->id)->exists();
@@ -172,7 +173,6 @@ class ProjectController extends Controller
                 // Save the project to database
                 $project = new Project();
                 $project->name = $name;
-                $project->description = $repo->description;
                 $project->url = $repo->html_url;
                 $project->demo = $repo->homepage;
                 $project->github_id = $repo->id;
