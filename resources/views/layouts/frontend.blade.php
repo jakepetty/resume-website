@@ -14,7 +14,8 @@
     <link rel="canonical" href="{{ config('app.url') }}">
     <meta property="og:title" content="{{ config('app.name') }}">
     <meta property="og:locale" content="en_US">
-    <meta property="og:description" content="Designer, Front-end Developer &amp; Mentor">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Full-Stack Web Developer &amp; Mentor">
     <meta property="og:url" content="{{ config('app.url') }}">
     <meta property="og:site_name" content="{{ config('app.name') }}">
     <meta property="og:image" content="{{ config('app.url') }}/img/og_thumbnail.png">
