@@ -11,7 +11,7 @@
 
     <meta name="author" content="{{ config('app.name') }}">
     <meta name="description" content="Full-Stack Web Developer &amp; Mentor">
-    <link rel="canonical" href="{{ config('app.name') }}">
+    <link rel="canonical" href="{{ config('app.url') }}">
     <meta property="og:title" content="{{ config('app.name') }}">
     <meta property="og:locale" content="en_US">
     <meta property="og:description" content="Designer, Front-end Developer &amp; Mentor">
