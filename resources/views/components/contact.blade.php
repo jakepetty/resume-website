@@ -1,7 +1,7 @@
 <section id="contact">
     <div class="container">
         <header>
-            <h1>{{ __('Say Hello') }}</h1>
+            <h2>{{ __('Say Hello') }}</h2>
             <p>{{ __('Have questions or want to hire me? Send me a message!') }}</p>
         </header>
         <form action="{{ route('contact.send') }}" method="POST">

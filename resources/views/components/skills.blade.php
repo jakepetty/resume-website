@@ -75,7 +75,7 @@
 <section id="skills">
     <div class="container text-center">
         <header>
-            <h1>{{ __('Technical Skills') }}</h1>
+            <h2>{{ __('Technical Skills') }}</h2>
             <p>{{ __('I am proficient in but not limited to the following') }}</p>
         </header>
         <div class="middle">

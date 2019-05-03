@@ -1,7 +1,7 @@
 <section id="projects">
     <div class="container">
         <header>
-            <h1>{{ __('Project') }} {{ __('Portfolio') }}</h1>
+            <h2>{{ __('Project') }} {{ __('Portfolio') }}</h2>
             <p>{{ __("A small collection of projects I've worked on") }}</p>
         </header>
         @foreach($projects as $project)
