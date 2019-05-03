@@ -9,13 +9,13 @@ class ResumeClass extends FPDF
 
     private $font = 'Arial';
     private $header_size = 16;
-    private $font_size = 11;
+    private $font_size = 10;
     private $header_spacing = 8;
     private $section_spacing = 7;
     private $contact_info = [];
     public function __construct()
     {
-        parent::__construct();
+        parent::__construct('P', 'mm', 'A4');
         $this->SetMargins(20, 20, 20, 20);
         $this->AddPage();
     }
@@ -38,30 +38,63 @@ class ResumeClass extends FPDF
     {
         $this->SetFont($this->font, 'B', $this->header_size);
         $this->SetTextColor(55, 55, 55);
-        $this->Cell(0, 0, strtoupper($this->contact_info['name']), 0, 0, 'C');
-        $this->Ln();
-        $this->Line($this->GetPageWidth() - 20, 25, 20, 25);
-        $this->Ln(10);
-        $this->SetFont($this->font, null, $this->font_size);
-        $this->Cell(0, 0, sprintf("%s %s, %s %s %s %s", $this->contact_info['street_address'], $this->contact_info['city'], $this->contact_info['state'], $this->contact_info['zip'], Chr(149), $this->contact_info['phone']), 0, 0, 'C');
+        $this->Cell(0, 0, ($this->contact_info['name']));
+        $this->Ln(7);
+
+        // Title
+        $this->SetFont($this->font, 'B', $this->font_size);
+        $this->Cell(0, 0, $this->contact_info['seeking'], 0, 1, 'l');
         $this->Ln(5);
+
+        // Location
+        $this->SetFont($this->font, '', $this->font_size);
+        $this->Cell(0, 0, sprintf("%s, %s", $this->contact_info['city'], $this->contact_info['state']), 0, 1, 'l');
+
+        // Links
         $this->SetFont('', 'U');
         $this->SetTextColor(0, 105, 255);
-        $this->Cell(($this->GetPageWidth() / 2) - 25, 0, $this->contact_info['email'], 0, 0, 'R', false, sprintf('mailto:%s', $this->contact_info['email']));
+        $this->Cell(0, 9, $this->contact_info['email'], 0, 1, 'l', false, sprintf('mailto:%s', $this->contact_info['email']));
+        $this->Cell(0, 0, $this->contact_info['github'], 0, 1, 'l', false, $this->contact_info['github']);
         $this->SetTextColor(0, 0, 0);
         $this->SetFont('', '');
-        $this->Cell(3, 0, chr(149));
-        $this->SetFont('', 'U');
-        $this->SetTextColor(0, 105, 255);
-        $this->Cell(($this->GetPageWidth() / 2) - 20, 0, $this->contact_info['github'], 0, 0, 'L', false, $this->contact_info['github']);
-        $this->SetTextColor(0, 0, 0);
         $this->Ln(5);
+
+        // Professional Summary
+        $this->MultiCell(0, 5, $this->contact_info['summary']);
+        $this->Ln(5);
+    }
+    public function projects($projects = [])
+    {
+        $this->AddPage();
+
+        $this->Ln($this->section_spacing);
+        $this->SetFont($this->font, '', $this->header_size);
+        $this->Cell(0, 8, 'Projects', 'B', 1, 'l');
+        $this->Ln($this->header_spacing);
+
+        $this->SetFont($this->font, '', $this->font_size);
+        foreach ($projects as $i => $project) {
+            if ($i != 0) {
+                $this->Ln(8);
+            }
+            $this->SetTextColor(0, 0, 0);
+            $this->SetFont($this->font, 'B');
+            $this->Cell(($this->GetPageWidth()), 5, $project['name'], 0);
+            $this->Ln();
+            $this->SetFont($this->font, '');
+            $this->MultiCell(0, 5,  $project['description'], 0);
+            $this->SetFont('', 'U');
+            $this->SetTextColor(0, 105, 255);
+            $this->Cell(($this->GetPageWidth()), 5,  $project['url'], 0, 0, 'L', false, $project['url']);
+            $this->Ln();
+        }
+        $this->Ln();
     }
     public function jobs($jobs = [])
     {
         $this->Ln($this->section_spacing);
-        $this->SetFont($this->font, 'B', $this->header_size);
-        $this->Cell(0, 0, 'EXPERIENCE', 0, 0, 'C');
+        $this->SetFont($this->font, '', $this->header_size);
+        $this->Cell(0, 8, 'Work Experience', 'B', 1, 'l');
         $this->Ln($this->header_spacing);
 
         $this->SetFont($this->font, '', $this->font_size);
@@ -69,14 +102,16 @@ class ResumeClass extends FPDF
             if ($i != 0) {
                 $this->Ln(7);
             }
-            $this->Cell(($this->GetPageWidth() / 3), 5, $job['name'], 0);
-            $this->Cell(($this->GetPageWidth() / 3), 5,  $job['location'], 0);
-            $this->Cell(($this->GetPageWidth() / 3), 5,  sprintf("%s - %s", $job['start_date'], $job['end_date'] ? $job['end_date'] : 'Present'), 0);
-            $this->Ln(8);
             $this->SetFont($this->font, 'B', $this->font_size);
-            $this->Cell(0, 0, $job['title']);
+            $this->Cell(0, 5, $job['title'], 0);
             $this->SetFont($this->font, '', $this->font_size);
-            $this->Ln(3);
+            $this->SetTextColor(100, 100, 100);
+            $this->Ln();
+            $this->Cell(0, 5, sprintf("%s - %s", $job['name'], $job['location']), 0);
+            $this->Ln();
+            $this->Cell(($this->GetPageWidth() / 3), 5, sprintf("%s - %s", $job['start_date'], $job['end_date'] ? $job['end_date'] : 'Present'), 0);
+            $this->Ln(8);
+            $this->SetTextColor(0, 0, 0);
             $this->MultiCell(0, 5, $job['description']);
             if ($job['duties']) {
                 $this->Ln(5);
@@ -94,9 +129,10 @@ class ResumeClass extends FPDF
     }
     public function education($schools = [])
     {
+
         $this->Ln($this->section_spacing);
-        $this->SetFont($this->font, 'B', $this->header_size);
-        $this->Cell(0, 0, 'EDUCATION', 0, 0, 'C');
+        $this->SetFont($this->font, '', $this->header_size);
+        $this->Cell(0, 8, 'Education', 'B', 1, 'l');
         $this->Ln($this->header_spacing);
 
         foreach ($schools as $i => $school) {
@@ -114,17 +150,16 @@ class ResumeClass extends FPDF
     }
     public function skills($skills = [])
     {
+
         $this->Ln($this->section_spacing);
-        $this->SetFont($this->font, 'B', $this->header_size);
-        $this->Cell(0, 0, 'SKILLS', 0, 0, 'C');
+        $this->SetFont($this->font, '', $this->header_size);
+        $this->Cell(0, 8, 'Skills', 'B', 1, 'l');
         $this->Ln($this->header_spacing);
 
         $this->SetFont($this->font, '', $this->font_size);
+        $cols = 3;
         foreach ($skills as $i => $skill) {
-            $this->Cell(($this->GetPageWidth() / 3), 7, chr(149) . ' ' . $skill, 0);
-            if ($i % 3 === 2) {
-                $this->Ln();
-            }
+            $this->Cell(($this->GetPageWidth() / $cols) - (40 / $cols), 7, $skill["name"] . ' (' . $skill["years"] . '+ years)', 0, $i % $cols === $cols - 1 ? 1 : 0, 'L');
         }
         $this->Ln();
     }

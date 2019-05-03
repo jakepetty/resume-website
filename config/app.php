@@ -6,6 +6,7 @@ return [
         'password' => env('GITHUB_PASSWORD', '')
     ],
     'resume' => [
+        'seeking' => env('RESUME_SEEKING', ''),
         'name' => env('RESUME_NAME', 'John Doe'),
         'email' => env('RESUME_EMAIL', 'example@example.com'),
         'phone' => env('RESUME_PHONE', '(123) 456-7890'),
