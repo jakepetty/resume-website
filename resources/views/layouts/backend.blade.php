@@ -30,9 +30,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/"><i class="fas fa-desktop"></i> {{ __('Frontend') }}</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/"><i class="fas fa-desktop"></i> {{ __('Frontend') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('skills.index') }}"><i class="fas fa-drafting-compass"></i> {{ __('Skills') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('projects.index') }}"><i class="fas fa-layer-group"></i> {{ __('Projects') }}</a>
+                            </li>
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
@@ -43,19 +49,6 @@
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                         @endif @else
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                            <i class="fas fa-drafting-compass"></i> Skills
-                          </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('projects.index') }}"><i class="fas fa-layer-group"></i> {{ __('Projects') }}</a>
-                                <a class="dropdown-item" href="{{ route('languages.index') }}"><i class="fas fa-code"></i> {{ __('Languages') }}</a>
-                                <a class="dropdown-item" href="{{ route('applications.index') }}"><i class="fas fa-laptop-code"></i> {{ __('Applications') }}</a>
-                                <a class="dropdown-item" href="{{ route('frameworks.index') }}"><i class="fas fa-project-diagram"></i> {{ __('Frameworks') }}</a>
-                                <a class="dropdown-item" href="{{ route('servers.index') }}"><i class="fas fa-server"></i> {{ __('Servers') }}</a>
-                            </div>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">

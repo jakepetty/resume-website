@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Server;
+use App\Skill;
 use Illuminate\Http\Request;
 
-class ServerController extends Controller
+class SkillController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class ServerController extends Controller
     public function index()
     {
         //
-        $servers = Server::orderBy('order', 'ASC')->get();
+        $skills = Skill::orderBy('order', 'ASC')->get();
 
-        return view('servers.index', compact('servers'));
+        return view('skills.index', compact('skills'));
     }
 
     /**
@@ -28,8 +28,7 @@ class ServerController extends Controller
     public function create()
     {
         //
-
-        return view('servers.create');
+        return view('skills.create');
     }
 
     /**
@@ -43,55 +42,56 @@ class ServerController extends Controller
         //
         $data = $request->validate([
             'name' => 'required',
-            'url' => 'nullable|url'
+            'years' => 'nullable|numeric'
         ]);
 
-        Server::create($data);
+        Skill::create($data);
 
-        return redirect(route('servers.index'));
+        return redirect(route('skills.index'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Server  $server
+     * @param  \App\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function edit(Server $server)
+    public function edit(Skill $skill)
     {
         //
-        return view('servers.edit', compact('server'));
+        return view('skills.edit', compact('skill'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Server  $server
+     * @param  \App\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Server $server)
+    public function update(Request $request, Skill $skill)
     {
         //
         $data = $request->validate([
             'name' => 'required',
-            'url' => 'nullable|url'
+            'years' => 'nullable|numeric'
         ]);
-        $server->update($data);
 
-        return redirect(route('servers.index'));
+        $skill->update($data);
+
+        return redirect(route('skills.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Server  $server
+     * @param  \App\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Server $server)
+    public function destroy(Skill $skill)
     {
         //
-        $server->delete();
+        $skill->delete();
 
         return back();
     }
@@ -99,9 +99,9 @@ class ServerController extends Controller
     public function reorder(Request $request)
     {
         foreach ($request->order as $order) {
-            $server = Server::where('id', $order['id'])->first();
-            $server->order = $order['position'];
-            $server->update();
+            $skill = Skill::where('id', $order['id'])->first();
+            $skill->order = $order['position'];
+            $skill->update();
         }
 
         return response(['status' => 200], 200);
