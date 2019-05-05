@@ -18,6 +18,7 @@ class CreateProjectsTable extends Migration
             $table->integer('github_id')->nullable();
             $table->string('name')->unique();
             $table->text('description')->nullable();
+            $table->string('filename')->nullable();
             $table->string('url')->nullable();
             $table->string('demo')->nullable();
             $table->integer('order')->unsigned()->default(0);

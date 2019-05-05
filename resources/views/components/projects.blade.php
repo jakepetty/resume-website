@@ -1,14 +1,14 @@
 <section id="projects">
+    <header>
+        <h2>{{ __('Project') }} {{ __('Portfolio') }}</h2>
+        <p>{{ __("A small collection of projects I've worked on") }}</p>
+    </header>
     <div class="container">
-        <header>
-            <h2>{{ __('Project') }} {{ __('Portfolio') }}</h2>
-            <p>{{ __("A small collection of projects I've worked on") }}</p>
-        </header>
         @foreach($projects as $project)
         <div class="row project">
             <div class="col-md-6">
                 <img class="img-fluid"
-                    src="/img/projects/{{ $project->github_id ? $project->github_id : $project->id }}.png"
+                    src="/img/projects/{{ $project->filename }}"
                     alt="Preview of {{ $project->name }}">
             </div>
             <div class="col-md-6">
@@ -27,8 +27,6 @@
             </div>
         </div>
         @endforeach
-    </div>
-    <div class="container">
         <div class="banner">
             <div class="row">
                 <div class="col">

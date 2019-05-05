@@ -53,7 +53,10 @@ class ProjectController extends Controller
 
         $project = Project::create($data);
         if ($request->image) {
-            Image::make($request->image->getPathname())->fit(535, 315)->save(public_path('img/projects/') . $project->id . '.jpg', 100);
+            $filename = ($project->github_id ? $project->github_id : $project->id) . '.' . $request->image->getClientOriginalExtension();
+            Image::make($request->image->getPathname())->fit(535, 315)->save(public_path(sprintf('img/projects/%s', $filename)), 100);
+            $project->filename = $filename;
+            $project->save();
         }
 
         return redirect(route('projects.index'));
@@ -88,18 +91,19 @@ class ProjectController extends Controller
             'url' => 'nullable|url',
             'demo' => 'nullable|url'
         ]);
-
         $project->update($data);
 
         if ($request->image) {
-            $filename = ($project->github_id ? $project->github_id : $project->id);
-            Image::make($request->image->getPathname())->fit(535, 315)->save(public_path(sprintf('img/projects/%s.%s', $filename, $request->image->getClientOriginalExtension())), 100);
+            $filename = ($project->github_id ? $project->github_id : $project->id) . '.' . $request->image->getClientOriginalExtension();
+            Image::make($request->image->getPathname())->fit(535, 315)->save(public_path(sprintf('img/projects/%s', $filename)), 100);
             if (config('app.cloudflare.enabled')) {
                 $cloudflare = new CloudflareClass();
                 $cloudflare->purge([
-                    url(sprintf('imaages/projects/%s.jpg', $filename))
+                    url(sprintf('img/projects/%s', $filename))
                 ]);
             }
+            $project->filename = $filename;
+            $project->save();
         }
 
         return redirect(route('projects.index'));
@@ -115,15 +119,14 @@ class ProjectController extends Controller
     {
         //
         if ($project->delete()) {
-            $filename = ($project->github_id ? $project->github_id : $project->id);
-            $file = public_path(sprintf('img/projects/%s.jpg', $filename));
+            $file = public_path("img/projects/%s", $project->filename);
             if (file_exists($file)) {
                 unlink($file);
                 if (config('app.cloudflare.email')) {
                     if (config('app.cloudflare.enabled')) {
                         $cloudflare = new CloudflareClass();
                         $cloudflare->purge([
-                            url(sprintf('img/projects/%s.jpg', $filename))
+                            url(sprintf("img/projects/%s", $project->filename))
                         ]);
                     }
                 }

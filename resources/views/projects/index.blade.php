@@ -15,7 +15,7 @@
     <div class="row ui-sortable" data-url="{{ route('projects.reorder') }}">
         @foreach ($projects as $project)
         <div class="col-md-4 card sortable" data-id="{{ $project->id }}">
-            <img src="/img/projects/{{ $project->github_id ? $project->github_id : $project->id }}.png" class="card-img-top">
+            <img src="/img/projects/{{ $project->filename }}" class="card-img-top">
             <div class="card-body">
                 <h5 class="card-title text-center">
                     {{ $project->name }}
