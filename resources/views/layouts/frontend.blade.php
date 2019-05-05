@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name') }} | Full-Stack Web Developer</title>
-    <link rel="manifest" href="{{ config('app.url') }}/manifest.json">
+    <link rel="manifest" href="/manifest.json">
     <meta name="author" content="{{ config('app.name') }}">
     <meta name="description" content="Full-Stack Web Developer &amp; mentor. I develop simple but complex projects for businesses and consumers and I love every minute of it.">
     <link rel="canonical" href="{{ config('app.url') }}">

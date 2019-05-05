@@ -7,22 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/backend.css') }}">
 </head>
 
 <body>
-    <main id="login" class=" h-100">
-        <header id="intro">
-            <div class="bg">
-                <div class="container h-100 row">
-                    <div class="col-md-6 offset-md-7">
-                        <div class="row h-100 justify-content-center align-items-center">
-                            @yield('content')
-                        </div>
-                    </div>
-                </div>
+    <section id="intro">
+        <div class="middle">
+            <div id="login">
+                <header class="animated flipInX">
+                    @yield('content')
+                </header>
             </div>
-        </header>
-    </main>
+        </div>
+    </section>
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
 
