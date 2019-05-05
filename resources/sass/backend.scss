@@ -4,6 +4,28 @@
 @import "~@fortawesome/fontawesome-free/css/all";
 @import "~animate.css/animate.min.css";
 @import "variables";
+.middle {
+  text-align: left;
+}
+#login {
+  header {
+    width: 500px;
+  }
+  label {
+    text-align: left;
+  }
+  .card {
+    border-radius: 15px;
+    background-color: rgba($accent-dark, 0.5);
+    .card-header {
+      font-size: 3em;
+    }
+    .invalid-feedback {
+      color: complement($accent-color);
+      text-align: center;
+    }
+  }
+}
 
 #backend {
   .breadcrumb {
@@ -52,7 +74,7 @@
   }
   thead {
     border-bottom: 5px solid $accent-color;
-    th{
+    th {
       a {
         color: #fff;
       }

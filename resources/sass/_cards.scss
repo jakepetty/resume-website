@@ -55,17 +55,3 @@
     }
   }
 }
-
-#login {
-  .card {
-    border-radius: 15px;
-    background-color: rgba($accent-dark, 0.5);
-    .card-header {
-      font-size: 3em;
-    }
-    .invalid-feedback {
-      color: complement($accent-color);
-      text-align: center;
-    }
-  }
-}

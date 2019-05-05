@@ -2,38 +2,53 @@
 require('./bootstrap')
 class App {
     constructor() {
+        this.intro = document.getElementById('intro');
+        this.navbar = document.getElementById('menu');
+
         $('.modal').modal('show')
         $('[data-toggle="tooltip"]').tooltip()
-        $(document).click((e) => {
+        document.addEventListener('click', () => {
             $('.navbar-collapse').collapse('hide')
         })
-        this.particles()
+        window.addEventListener('scroll', this.scrollEvents.bind(this), false)
         this.sortProjects()
         this.animatePills()
         this.autoResizeTextareas()
-        $('nav a[href^="#"]').on('click', (e) => {
-            e.preventDefault()
-            let el = $(e.currentTarget)
-            let target = $(el.attr('href'))
-            $('html, body').stop().animate({
-                'scrollTop': target.offset().top - 61
-            }, 0)
-        })
+
+        // Navigation
+        this.setupNavigation()
+        // Sticky Navbar
+        this.stickyNavbar(window.pageYOffset);
+    }
+    setupNavigation() {
+        let links = document.querySelectorAll('nav a');
+        for (let i = 0; i < links.length; i++) {
+            let link = links[i];
+            if (link.hash) {
+                let target = document.querySelector(link.hash);
+                link.addEventListener('click', (e) => {
+                    e.preventDefault()
+                    window.scrollTo(0, target.offsetTop - this.navbar.clientHeight)
+                })
+            }
+        }
     }
     animatePills() {
-        $('.pill').on('mouseover', (e) => {
-            let el = $(e.currentTarget)
-            let animaton = 'rubberBand'
-            el[0].addEventListener('animationend', () => {
-                el.removeClass(animaton)
+        let pills = document.querySelectorAll('.pill');
+        let animaton = 'rubberBand'
+        pills.forEach((pill) => {
+            pill.addEventListener('mouseover', () => {
+                pill.classList.add('animated', animaton)
+                pill.addEventListener('animationend', () => {
+                    pill.classList.remove(animaton)
+                })
             })
-            el.addClass('animated ' + animaton)
         })
     }
     autoResizeTextareas() {
         let elements = document.querySelectorAll('textarea')
         elements.forEach((element) => {
-            element.addEventListener('keypress', function () {
+            element.addEventListener('keypress', () => {
                 element.style.height = 'auto'
                 element.style.height = element.scrollHeight + 5 + 'px'
             })
@@ -46,9 +61,6 @@ class App {
             items: '.sortable',
             cursor: 'move',
             opacity: 0.6,
-            helper: (e, ui) => {
-                return ui
-            },
             update: (event, ui) => {
                 let order = []
                 $('.sortable').each((index, element) => {
@@ -65,52 +77,27 @@ class App {
                     data: {
                         order: order,
                         _token: $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: (response) => {
-                        console.log(response)
                     }
                 })
             }
         })
     }
-    particles() {
-        let _self = this
-        if ($('#intro').length > 0) {
-            particlesJS.load('intro', '/particles.json', () => {
-                let nav = $('.navbar')
-                let win = $(window)
-                let header = $('#intro')
-                _self.stickyNav(nav, win)
-                _self.typingAnimation()
-                win.scroll((e) => {
-                    _self.paralaxing(header, win)
-                    _self.stickyNav(nav, win)
-                })
-            })
-        }
+    scrollEvents() {
+        let y = window.pageYOffset
+        this.parallaxing(y);
+        this.stickyNavbar(y);
     }
-    paralaxing(header, win) {
-        header.css({ backgroundPositionY: (win.scrollTop() / 5) + "%" })
+    parallaxing(y) {
+        // parallaxing
+        this.intro.style.backgroundPositionY = (y / 4) + "%"
     }
-    stickyNav(nav, win) {
-        let scroll = win.scrollTop() + nav.outerHeight()
-        if (scroll >= win.height()) {
-            nav.addClass("fixed-top")
+    stickyNavbar(y) {
+        let scrollY = y + this.navbar.scrollHeight
+        if (scrollY >= window.innerHeight) {
+            this.navbar.classList.add("fixed-top")
         } else {
-            nav.removeClass("fixed-top")
+            this.navbar.classList.remove("fixed-top")
         }
-    }
-    typingAnimation() {
-        new Typed("#skill", {
-            strings: ['Full-Stack', 'Front-End', 'Back-End', 'PHP', 'HTML5', 'CSS3', 'JavaScript', 'Laravel', 'CakePHP', 'C', 'C++'],
-            backSpeed: 25,
-            backDelay: 2000,
-            showCursor: true,
-            typeSpeed: 100,
-            shuffle: false,
-            smartBackspace: true,
-            loop: true
-        })
     }
 }
 new App()

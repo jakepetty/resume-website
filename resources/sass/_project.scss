@@ -1,15 +1,42 @@
-.project {
-  margin-bottom: 100px;
-  h3 {
-    text-align: left;
-    border-bottom: 3px solid $accent-color;
+#projects {
+  padding-bottom: 50px;
+  padding-top: 0;
+  header {
+    h2,
+    p {
+      color: $accent-light;
+    }
+    padding: 50px 0;
+    margin-bottom: 100px;
+    background: linear-gradient(90deg, $accent-dark, lighten($accent-dark, 2.5%), $accent-dark);
+    box-shadow: 0 8px 8px -4px rgba($accent-dark, 0.25);
   }
-  .img {
-    height: 335px;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  p {
-    line-height: 30px;
+  .project {
+    margin-bottom: 100px;
+    h3 {
+      color: $accent-light;
+    }
+    .img {
+      height: 335px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    p {
+      color: darken($accent-light, 5%);
+      line-height: 30px;
+      font-size: 1.1rem;
+      a {
+        color: $accent-light;
+        text-decoration: none;
+        font-weight: 600;
+        &:hover {
+          border-bottom: 2px dashed $accent-light;
+        }
+      }
+    }
+    .btn {
+      border-color: $accent-light;
+      color: $accent-light;
+    }
   }
 }

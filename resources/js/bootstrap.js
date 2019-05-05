@@ -10,8 +10,6 @@ window._ = require('lodash');
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
-    window.Typed = require('typed.js');
-    window.particleJS = require('particles.js');
     require('jquery-ui/ui/widgets/sortable.js');
     require('bootstrap');
 } catch (e) {

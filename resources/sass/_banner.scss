@@ -1,5 +1,5 @@
 .banner {
-  background: $accent-dark;
+  background-color: desaturate(lighten($accent-dark, 15%), 25%);
   color: $accent-light;
   padding: 20px;
   box-shadow: 0 10px 0 $accent-color;

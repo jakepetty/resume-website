@@ -6,7 +6,7 @@
   z-index: 1000;
   border-top: 5px solid $accent-color;
   font-size: 16px;
-  box-shadow: 0 8px 8px -4px rgba($accent-dark, 0.5);
+  box-shadow: 0 8px 8px -4px rgba($accent-dark, 0.10);
 
   @include media-breakpoint-down(md) {
     text-align: left;
