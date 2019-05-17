@@ -3,14 +3,13 @@
   color: $accent-light;
   height: 100%;
   max-height: 1080px;
-  background: url("/img/background.jpg");
+  background: url("/img/background.svg");
   background-color: $accent-dark;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: top center;
   .middle {
-    background: url("/img/bubble1.png"), url("/img/bubble2.png") bottom right, rgba($accent-dark, 0.75);
     background-repeat: no-repeat;
     height: 100%;
     header {
