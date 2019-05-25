@@ -5,7 +5,7 @@
     </header>
     <div class="container">
         @foreach($projects as $project)
-        <div class="row project">
+        <div class="row project" data-aos="flip-up" data-aos-duration="1000">
             <div class="col-md-6">
                 <img class="img-fluid"
                     src="/img/projects/{{ $project->filename }}"

@@ -81,7 +81,7 @@
         <div class="middle">
             <div class="wrapper">
                 @foreach($skills as $skill)
-                <span class="pill">{{ $skill->name }}</span>
+                <span class="pill" data-aos="zoom-in-up" data-aos-duration="1000">{{ $skill->name }}</span>
                 @endforeach
             </div>
         </div>

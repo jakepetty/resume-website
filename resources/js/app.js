@@ -1,7 +1,10 @@
 'use strict'
 require('./bootstrap')
+require('../../node_modules/aos/dist/aos')
+import AOS from 'aos';
 class App {
     constructor() {
+        AOS.init()
         this.intro = document.getElementById('intro');
         this.navbar = document.getElementById('menu');
 
