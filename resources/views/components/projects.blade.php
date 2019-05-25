@@ -1,6 +1,6 @@
 <section id="projects">
     <header>
-        <h2>{{ __('Project') }} {{ __('Portfolio') }}</h2>
+        <h2>{{ __('Project Portfolio') }}</h2>
         <p>{{ __("A small collection of projects I've worked on") }}</p>
     </header>
     <div class="container">
@@ -17,11 +17,11 @@
                     {!! $project->description !!}
                 </p>
                 @if($project->demo)
-                <a href="{{ $project->demo }}" class="btn btn-outline-dark" target="_blank"><i class="fas fa-eye"></i>
+                <a href="{{ $project->demo }}" class="btn btn-outline-dark" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i>
                     {{ __('Visit') }}</a>
                 @endif
                 @if($project->url)
-                <a href="{{ $project->url }}" target="blank" class="btn btn-outline-dark"><i class="fas fa-code"></i>
+                <a href="{{ $project->url }}" class="btn btn-outline-dark" target="blank" rel="noopener noreferrer"><i class="fas fa-code"></i>
                     {{ __('Source Code') }}</a>
                 @endif
             </div>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col">
                     <a href="https://github.com/{{ config('app.github.username') }}"
-                        class="btn btn-outline-dark btn-lg" target="_blank">
+                        class="btn btn-outline-dark btn-lg" target="_blank" rel="noopener noreferrer">
                         {{ __('Visit GitHub') }}</a>
                 </div>
             </div>
