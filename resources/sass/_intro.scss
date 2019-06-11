@@ -12,6 +12,13 @@
   .middle {
     background-repeat: no-repeat;
     height: 100%;
+    .image {
+      height: 500px;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url("/img/intro.svg");
+    }
     header {
       h1 {
         font-size: 5em;
