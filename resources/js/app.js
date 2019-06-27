@@ -21,7 +21,36 @@ class App {
         // Navigation
         this.setupNavigation()
         // Sticky Navbar
-        this.stickyNavbar(window.pageYOffset);
+        this.stickyNavbar(window.pageYOffset)
+        this.setupProjectAlignment();
+    }
+    setupProjectAlignment() {
+        window.addEventListener('resize', () => {
+            if (window.innerWidth < 768) {
+                this.removeProjectAlignment()
+            } else {
+                this.addProjectAlignment()
+            }
+        })
+        if (window.innerWidth > 768) {
+            this.addProjectAlignment()
+        }
+    }
+    addProjectAlignment() {
+        let projects = document.querySelectorAll('.project');
+        projects.forEach((project, i) => {
+            if (i % 2 === 1) {
+                project.querySelector('.col-md-6').classList.add('order-1');
+            }
+        })
+    }
+    removeProjectAlignment() {
+        let projects = document.querySelectorAll('.project');
+        projects.forEach((project, i) => {
+            if (i % 2 === 1) {
+                project.querySelector('.col-md-6').classList.remove('order-1');
+            }
+        })
     }
     setupNavigation() {
         let links = document.querySelectorAll('nav a');
